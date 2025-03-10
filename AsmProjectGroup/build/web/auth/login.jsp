@@ -17,7 +17,7 @@
     <body class="login-page d-flex justify-content-center align-items-center vh-100">
         <div class="container login-container">
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                      <div class="col-md-6">
                     <div class="card p-4 shadow-lg rounded-3">
                         <h3 class="login text-center mb-4">Login</h3>
                         <form action="MainController" method="post">
