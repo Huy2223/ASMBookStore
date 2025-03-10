@@ -1,0 +1,107 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 7, 2025, 7:08:04 PM
+    Author     : ACER
+*/
+.login-container h3 {
+    font-size: 32px;     
+    font-weight: bold;      
+    color: #007bff;        
+    text-transform: uppercase;
+    letter-spacing: 2px;    
+    text-align: center;    
+    background: transparent;
+}
+.register-container h3 {
+    color: white; /* Giữ màu trắng */
+    font-size: 2.5rem; /* Làm to hơn */
+    font-weight: bold; /* Đậm hơn */
+    text-transform: uppercase; /* Viết hoa */
+    letter-spacing: 3px; /* Giãn chữ nhiều hơn */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Tạo bóng đậm */
+    background: rgba(0, 0, 0, 0.5); /* Thêm nền tối nhẹ */
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    text-align: center;
+}
+.form-label {
+    color: white; /* Đổi thành trắng để nổi bật trên nền tối */
+    font-size: 1rem; /* Tăng kích thước */
+    font-weight: bold; /* Đậm hơn */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Thêm bóng để dễ nhìn hơn */
+}
+
+
+/* Default styles for both pages */
+body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #f8f9fa;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.sidebar.collapsed {
+    width: 0;
+    padding: 0;
+}
+
+.content {
+    margin-left: 250px;
+    transition: 0.3s;
+}
+
+.content.collapsed {
+    margin-left: 0;
+}
+/* Background for login page */
+.login-page {
+    background-image: url('../books/login-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.register-page {
+    background-image: url('/AsmProjectGroup/books/register-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+
+.card {
+    background: rgba(255, 255, 255, 0.7); 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    padding: 20px;
+}
+.login-container .card {
+    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Viền nhẹ */
+    backdrop-filter: blur(10px); /* Làm mờ nền phía sau */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Đổ bóng cho nổi bật */
+}
+
+/* Làm chữ email và password rõ ràng */
+.login-container .form-label {
+    color: #212529; /* Màu chữ tối */
+    font-size: 1rem; /* Kích thước chuẩn */
+    font-weight: bold; /* Chữ đậm */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* Thêm bóng mờ nhẹ */
+}
