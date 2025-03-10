@@ -27,17 +27,21 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Tên sách</th>
-                                <th>Tác giả</th>
-                                <th>Giá</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>ISBN</th>
+                                <th>Published Year</th>
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="book" items="${bookList}">
                                 <tr>
-                                    <td>${book.id}</td>
+                                    <td>${book.bookID}</td>
                                     <td>${book.title}</td>
-                                    <td>${book.author}</td>
+                                    <td>${book.authorName}</td>
+                                    <td>${book.ISBN}</td>
+                                    <td>${book.publishedYear}</td>
                                     <td>${book.price}</td>
                                 </tr>
                             </c:forEach>

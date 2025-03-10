@@ -33,8 +33,8 @@ public class BookDAO {
             Book book = new Book();
             book.setBookID(resultSet.getInt("BookID"));
             book.setTitle(resultSet.getString("Title"));
-            book.setAuthorID(resultSet.getInt("AuthorID")); // Lấy authorID
-            book.setAuthorName(resultSet.getString("AuthorName")); // Lấy authorName
+            book.setAuthorID(resultSet.getInt("AuthorID")); 
+            book.setAuthorName(resultSet.getString("AuthorName")); 
             book.setISBN(resultSet.getString("ISBN"));
             book.setPublishedYear(resultSet.getInt("PublishedYear"));
             book.setPrice(resultSet.getDouble("Price"));

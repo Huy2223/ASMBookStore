@@ -5,27 +5,23 @@
  */
 package controllers;
 
-import dao.AccountDAO;
-import dto.Account;
+import dao.BookDAO;
+import dto.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ACER
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "BookListController", urlPatterns = {"/BookListController"})
+public class BookListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,39 +33,14 @@ public class LoginController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            AccountDAO account = new AccountDAO();
-            List<Account> accounts = account.select();
-            Account foundUser = null;
-            for (Account acc : accounts) {
-                if (acc.getEmail().equals(email) && acc.getPassword().equals(password)) {
-                    foundUser = acc; 
-                    break; 
-                }
-            }
-
-            String url = "error.jsp"; 
-
-            if (foundUser != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("userInfo", foundUser);
-
-                if (foundUser.getRole().equals("ADMIN")) {
-                    url = "BookListController"; 
-                } else if (foundUser.getRole().equals("CUSTOMER")) {
-                    url = "shop.jsp"; 
-                }
-            } else {
-                url = "login.jsp";
-                request.setAttribute("errorMessage", "Incorrect Email or Password");
-            }
-
-            request.getRequestDispatcher(url).forward(request, response);
+            BookDAO bookDAO = new BookDAO();
+            List<Book> books = bookDAO.getAllBooksWithAuthors(); 
+            request.setAttribute("bookList", books);
+            request.getRequestDispatcher("bookManagement.jsp").forward(request, response);
         }
     }
 
@@ -85,13 +56,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -105,13 +70,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
