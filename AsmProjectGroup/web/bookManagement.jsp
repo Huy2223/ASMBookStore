@@ -19,6 +19,9 @@
                 <div class="col-12 text-center">
                     <h1>Book Store</h1>
                 </div>
+                <div>
+                    <h3>Welcome ${userInfo.userName}</h3>
+                </div>
             </div>
 
             <div class="row">
@@ -29,9 +32,9 @@
                                 <th>ID</th>
                                 <th>Title</th>
                                 <th>Author</th>
-                                <th>ISBN</th>
                                 <th>Published Year</th>
                                 <th>Price</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,9 +43,9 @@
                                     <td>${book.bookID}</td>
                                     <td>${book.title}</td>
                                     <td>${book.authorName}</td>
-                                    <td>${book.ISBN}</td>
                                     <td>${book.publishedYear}</td>
                                     <td>${book.price}</td>
+                                    <td> <a href="" class="btn" data-bs-toggle="modal" data-bs-target="#updateModal">Update</a></td>
                                 </tr>
                             </c:forEach>
                         </tbody>
