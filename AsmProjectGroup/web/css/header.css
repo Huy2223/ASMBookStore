@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 12, 2025, 7:54:50 PM
+    Author     : ACER
+*/
+ header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #1A2A2E;
+        padding: 15px 20px;
+    }
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        padding: 0;
+    }
+    nav ul li {
+        margin: 0 15px;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: white;
+    }
+    .search-cart input {
+        padding: 5px;
+        border: none;
+        border-radius: 4px;
+    }
+    .search-cart button {
+        background-color: #0C191B;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }

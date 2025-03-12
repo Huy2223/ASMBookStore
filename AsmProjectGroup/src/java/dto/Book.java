@@ -16,19 +16,17 @@ public class Book {
     private String title;
     private String authorName;
     private int authorID;
-    private String ISBN;
     private int publishedYear;
     private double price;
 
     public Book() {
     }
 
-    public Book(int bookID, String title, String authorName, int authorID, String ISBN, int publishedYear, double price) {
+    public Book(int bookID, String title, String authorName, int authorID, int publishedYear, double price) {
         this.bookID = bookID;
         this.title = title;
         this.authorName = authorName;
         this.authorID = authorID;
-        this.ISBN = ISBN;
         this.publishedYear = publishedYear;
         this.price = price;
     }
@@ -65,13 +63,6 @@ public class Book {
         this.authorID = authorID;
     }
 
-    public String getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
 
     public int getPublishedYear() {
         return publishedYear;
