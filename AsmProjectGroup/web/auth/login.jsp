@@ -20,7 +20,7 @@
                       <div class="col-md-6">
                     <div class="card p-4 shadow-lg rounded-3">
                         <h3 class="login text-center mb-4">Login</h3>
-                        <form action="MainController" method="post">
+                        <form action="<%= request.getContextPath() %>/MainController" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
@@ -36,7 +36,7 @@
                                 <label class="form-check-label" for="rememberMe">Remember Me</label>
                             </div>
 
-                            <div class="d-grid mb-3">
+                            <div class="d-grid mb-3">`
                                 <button type="submit" value="login" name="action" class="btn btn-primary">Login</button>
                             </div>
                             ${errorMessage}

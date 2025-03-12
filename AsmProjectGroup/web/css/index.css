@@ -17,13 +17,13 @@ and open the template in the editor.
     background: transparent;
 }
 .register-container h3 {
-    color: white; /* Giữ màu trắng */
-    font-size: 2.5rem; /* Làm to hơn */
-    font-weight: bold; /* Đậm hơn */
-    text-transform: uppercase; /* Viết hoa */
-    letter-spacing: 3px; /* Giãn chữ nhiều hơn */
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Tạo bóng đậm */
-    background: rgba(0, 0, 0, 0.5); /* Thêm nền tối nhẹ */
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold; 
+    text-transform: uppercase; 
+    letter-spacing: 3px; 
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); 
+    background: rgba(0, 0, 0, 0.5); 
     padding: 10px 20px;
     border-radius: 10px;
     display: inline-block;

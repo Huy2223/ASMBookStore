@@ -50,7 +50,7 @@ public class RegisterController extends HttpServlet {
             if (success) {
                 HttpSession session = request.getSession();
                 session.setAttribute("successMessage", "Registration successful! Please login.");
-                response.sendRedirect("auth/login.jsp"); // Chuyển hướng đến login.jsp
+                response.sendRedirect("auth/login.jsp"); 
                 return;
             } else {
                 request.setAttribute("errorMessage", "Registration failed! Email may already exist.");
