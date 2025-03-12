@@ -27,6 +27,7 @@
                                 <th>ID</th>
                                 <th>Title</th>
                                 <th>Author</th>
+                                <th>Description</th>
                                 <th>Published Year</th>
                                 <th>Price</th>
 
@@ -40,6 +41,7 @@
                                     <td>${book.bookID}</td>
                                     <td>${book.title}</td>
                                     <td>${book.authorName}</td>
+                                    <td>${book.description}</td>
                                     <td>${book.publishedYear}</td>
                                     <td><fmt:formatNumber value="${book.price}" type="currency" /></td>
                                     <td> <a href="" class="btn" data-bs-toggle="modal" data-bs-target="#updateModal">Update</a></td>

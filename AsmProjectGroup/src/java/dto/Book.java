@@ -18,17 +18,19 @@ public class Book {
     private int authorID;
     private int publishedYear;
     private double price;
+    private String description;
 
     public Book() {
     }
 
-    public Book(int bookID, String title, String authorName, int authorID, int publishedYear, double price) {
+    public Book(int bookID, String title, String authorName, int authorID, int publishedYear, double price, String description) {
         this.bookID = bookID;
         this.title = title;
         this.authorName = authorName;
         this.authorID = authorID;
         this.publishedYear = publishedYear;
         this.price = price;
+        this.description = description;
     }
 
     public int getBookID() {
@@ -63,7 +65,6 @@ public class Book {
         this.authorID = authorID;
     }
 
-
     public int getPublishedYear() {
         return publishedYear;
     }
@@ -79,6 +80,16 @@ public class Book {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
 
     
     

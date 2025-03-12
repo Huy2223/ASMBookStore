@@ -21,7 +21,7 @@ import utils.DBUtils;
 public class BookDAO {
     public List<Book> getAllBooksWithAuthors() {
     List<Book> books = new ArrayList<>();
-    String sql = "SELECT Books.BookID, Books.Title, Books.AuthorID, Authors.Name AS AuthorName, Books.PublishedYear, Books.Price " +
+    String sql = "SELECT Books.BookID, Books.Title, Books.AuthorID, Authors.Name AS AuthorName, Books.PublishedYear, Books.Price, Books.Description " +
                  "FROM Books " +
                  "INNER JOIN Authors ON Books.AuthorID = Authors.AuthorID";
 
@@ -37,6 +37,7 @@ public class BookDAO {
             book.setAuthorName(resultSet.getString("AuthorName")); 
             book.setPublishedYear(resultSet.getInt("PublishedYear"));
             book.setPrice(resultSet.getDouble("Price"));
+            book.setDescription(resultSet.getString("Description"));
             books.add(book);
         }
 
