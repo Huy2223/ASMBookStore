@@ -1,18 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controllers;
 
 import dao.AccountDAO;
 import dto.Account;
+import dto.Book;
+
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,108 +17,92 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author ACER
- */
+import dao.BookDAO;
+import java.util.ArrayList;
+
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            AccountDAO account = new AccountDAO();
-            List<Account> accounts = account.select();
-            Account foundUser = null;
-            for (Account acc : accounts) {
-                if (acc.getEmail().equals(email) && acc.getPassword().equals(password)) {
-                    foundUser = acc; 
-                    break; 
-                }
-            }
 
-            String url = "error.jsp"; 
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-            if (foundUser != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("userInfo", foundUser);
+        AccountDAO accountDAO = new AccountDAO();
+        Account account = null;
+        try {
+            // Fetch the account by email
+            account = accountDAO.getAccountByEmail(email);
 
-                if (foundUser.getRole().equals("ADMIN")) {
-                    url = "BookListController"; 
-                } else if (foundUser.getRole().equals("CUSTOMER")) {
-                    url = "shop.jsp"; 
+            String url = "auth/login.jsp"; // Default to login page
+            String errorMessage = "Incorrect Email or Password";
+
+            if (account != null) {
+                // Verify the password (replace with proper hashing later)
+                if (account.getPassword().equals(password)) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("userInfo", account);
+
+                    if ("ADMIN".equals(account.getRole())) {
+                        url = "BookListController";
+                    } else if ("CUSTOMER".equals(account.getRole())) {
+                        BookDAO bookDAO = new BookDAO();
+                        List<Book> books = bookDAO.getAllBooksWithAuthors();
+                        List<Book> newArrivalBooks = new ArrayList<>();
+                        List<Book> bestSellerBooks = new ArrayList<>();
+                        List<Book> topRatedBooks = new ArrayList<>();
+
+                        for (Book book : books) {
+                            if (book.getBookID() >= 1 && book.getBookID() <= 5) {
+                                newArrivalBooks.add(book);
+                            } else if (book.getBookID() >= 6 && book.getBookID() <= 10) {
+                                bestSellerBooks.add(book);
+                            } else if (book.getBookID() >= 11 && book.getBookID() <= 15) {
+                                topRatedBooks.add(book);
+                            }
+                        }
+
+                        request.setAttribute("newArrivalBooks", newArrivalBooks);
+                        request.setAttribute("bestSellerBooks", bestSellerBooks);
+                        request.setAttribute("topRatedBooks", topRatedBooks);
+                        url = "main.jsp";
+                    } else {
+                        // Handle other roles or scenarios if needed
+                        errorMessage = "Unknown role";
+                        request.setAttribute("errorMessage", errorMessage);
+                    }
+                } else {
+                    request.setAttribute("errorMessage", errorMessage);
                 }
             } else {
-                url = "login.jsp";
-                request.setAttribute("errorMessage", "Incorrect Email or Password");
+                request.setAttribute("errorMessage", errorMessage);
             }
 
             request.getRequestDispatcher(url).forward(request, response);
+
+        } catch (SQLException | ClassNotFoundException e) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+            request.setAttribute("errorMessage", "Error during login. Please try again.");
+            request.getRequestDispatcher("auth/login.jsp").forward(request, response); // Ensure error page is shown
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

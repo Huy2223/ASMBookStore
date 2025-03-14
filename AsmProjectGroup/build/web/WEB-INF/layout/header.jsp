@@ -3,7 +3,7 @@
     Created on : Mar 12, 2025, 7:42:53 PM
     Author     : ACER
 --%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav d-flex w-50 justify-content-center" style="gap: 45px; font-size: 1.2rem;">
                 <li class="nav-item">
-                    <a class="nav-link text-white text-center" href="index.jsp">Home</a>
+                    <a class="nav-link text-white text-center" href="<%= request.getContextPath() %>/MainController">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white text-center" href="#">Category</a>

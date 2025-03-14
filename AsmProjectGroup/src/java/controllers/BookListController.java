@@ -9,6 +9,7 @@ import dao.BookDAO;
 import dto.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,10 +37,26 @@ public class BookListController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            /* TODO output your page here. You may us+e following sample code. */
             BookDAO bookDAO = new BookDAO();
-            List<Book> books = bookDAO.getAllBooksWithAuthors(); 
+            List<Book> books = bookDAO.getAllBooksWithAuthors();
             request.setAttribute("bookList", books);
+            List<Book> newArrivalBooks = new ArrayList<>();
+            List<Book> bestSellerBooks = new ArrayList<>();
+            List<Book> topRatedBooks = new ArrayList<>();
+
+            for (Book book : books) {
+                if (book.getBookID() >= 1 && book.getBookID() <= 5) {
+                    newArrivalBooks.add(book);
+                } else if (book.getBookID() >= 6 && book.getBookID() <= 10) {
+                    bestSellerBooks.add(book);
+                } else if (book.getBookID() >= 11 && book.getBookID() <= 15) {
+                    topRatedBooks.add(book);
+                }
+            }
+            request.setAttribute("newArrivalBooks", newArrivalBooks);
+            request.setAttribute("bestSellerBooks", bestSellerBooks);
+            request.setAttribute("topRatedBooks", topRatedBooks);
             request.getRequestDispatcher("bookManagement.jsp").forward(request, response);
         }
     }

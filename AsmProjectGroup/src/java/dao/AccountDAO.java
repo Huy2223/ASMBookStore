@@ -61,4 +61,22 @@ public class AccountDAO {
             return rowsAffected > 0;
         }
     }   
+    public Account getAccountByEmail(String email) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM Accounts WHERE Email = ?";
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Account account = new Account();
+                account.setAccountID(rs.getInt("accountID"));
+                account.setUserName(rs.getString("userName"));
+                account.setPassword(rs.getString("password"));
+                account.setEmail(rs.getString("email"));
+                account.setRole(rs.getString("role"));
+                return account;
+            }
+        }
+        return null;
+    }
 }
