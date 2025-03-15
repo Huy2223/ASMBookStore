@@ -9,9 +9,23 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/Tindex.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     </head>
     <body class="">
         <%@ include file="/WEB-INF/layout/header.jsp"%>
+        <div class="cart-icon">
+            <a href="<c:url value='/cart' />">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">
+                    <c:if test="${not empty cartItems}">
+                        <c:out value="${cartItems.size()}"/>
+                    </c:if>
+                    <c:if test="${empty cartItems}">
+                        0
+                    </c:if>
+                </span>
+            </a>
+        </div>
         <section class="container my-3">
             <div class="text-center py-5">
                 <img class="bookListImg" src="<c:url value="/books/photo-background.jpg" />" alt="Book Image"/>
@@ -26,22 +40,18 @@
                 <div class="slider new-arrival-slider">
                     <c:forEach var="book" items="${newArrivalBooks}">
                         <div class="card">
-                            <img class="bookListImg "
-                                 src="<c:url value="/books/${book.bookID}.jpg" />"
-                                 alt="${book.title}" />
-                            <div class="card-body">
+                            <img class="bookListImg" src="<c:url value='/books/${book.bookID}.jpg' />" alt="${book.title}" />
+                            <div class="card-body text-center">
                                 <h5 class="card-title" title="${book.title}">${book.title}</h5>
                                 <p class="card-price">
                                     <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/>
                                 </p>
-                                <div class="card-buttons">
-                                    <button class="btn btn-add w-100">
-                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                                    </button>
-                                    <a href="<c:url value='/books/detail/${book.bookID}' />" class="btn btn-view w-100">
-                                        View Details
-                                    </a>
-                                </div>
+                                <button class="btn-add-custom">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                                <a href="<c:url value='/books/detail/${book.bookID}' />" class="view-details-link">
+                                    View Details
+                                </a>
                             </div>
                         </div>
                     </c:forEach>
@@ -65,14 +75,12 @@
                                 <p class="card-price">
                                     <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/>
                                 </p>
-                                <div class="card-buttons">
-                                    <button class="btn btn-add w-100">
-                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                                    </button>
-                                    <a href="<c:url value='/books/detail/${book.bookID}' />" class="btn btn-view w-100">
-                                        View Details
-                                    </a>
-                                </div>
+                                <button class="btn-add-custom">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                                <a href="<c:url value='/books/detail/${book.bookID}' />" class="view-details-link">
+                                    View Details
+                                </a>
                             </div>
                         </div>
                     </c:forEach>
@@ -89,7 +97,7 @@
             <div class="row">
                 <c:forEach var="author" items="${featuredAuthors}">
                     <div class="col"><div class="border p-5">${author}</div></div>
-                    </c:forEach>
+                </c:forEach>
             </div>
         </section>
 
@@ -104,8 +112,5 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="<c:url value='/js/newArrivalSlider.js'/>"></script>
         <script src="<c:url value='/js/bestSellerSlider.js'/>"></script>
-
-
-
     </body>
 </html>

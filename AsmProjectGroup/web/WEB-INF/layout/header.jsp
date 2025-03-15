@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav d-flex w-50 justify-content-center" style="gap: 45px; font-size: 1.2rem;">
                 <li class="nav-item">
-                    <a class="nav-link text-white text-center" href="<%= request.getContextPath() %>/MainController">Home</a>
+                    <a class="nav-link text-white text-center" href="<%= request.getContextPath() %>/MainController?action=popList">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white text-center" href="#">Category</a>

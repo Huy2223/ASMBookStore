@@ -33,6 +33,9 @@ public class MainController extends HttpServlet {
                     case "register":
                         url = "RegisterController";
                         break;
+                    case "popList":
+                        url = "MainListController";
+                        break;
                 }
             }
 
