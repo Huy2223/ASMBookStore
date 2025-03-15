@@ -69,7 +69,6 @@ public class LoginController extends HttpServlet {
                         request.setAttribute("topRatedBooks", topRatedBooks);
                         url = "main.jsp";
                     } else {
-                        // Handle other roles or scenarios if needed
                         errorMessage = "Unknown role";
                         request.setAttribute("errorMessage", errorMessage);
                     }

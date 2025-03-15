@@ -3,73 +3,80 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/Tindex.css">
-
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css">
     </head>
-
     <body class="">
         <%@ include file="/WEB-INF/layout/header.jsp"%>
-
         <section class="container my-3">
-            <div class=" text-center py-5">
-                <img class="bookListImg img-thumbnail" 
-                     src="<c:url value="/books/photo-background.jpg" />" 
-                     alt="Book Image"  />
+            <div class="text-center py-5">
+                <img class="bookListImg" src="<c:url value="/books/photo-background.jpg" />" alt="Book Image"/>
             </div>
         </section>
 
         <section class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <h5>NEW ARRIVAL</h5>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="text-uppercase font-weight-bold">New Arrival</h5>
             </div>
-            <div class="slider-container">
-                <div class="slider">
+            <div class="slider-container" id="newArrivalSlider">
+                <div class="slider new-arrival-slider">
                     <c:forEach var="book" items="${newArrivalBooks}">
                         <div class="card">
-                            <img class="bookListImg img-thumbnail"
+                            <img class="bookListImg "
                                  src="<c:url value="/books/${book.bookID}.jpg" />"
-                                 alt="Book Image" />
+                                 alt="${book.title}" />
                             <div class="card-body">
-                                <h5 class="card-title">${book.title}</h5>
-                                <p class="card-price font-weight-bold">
+                                <h5 class="card-title" title="${book.title}">${book.title}</h5>
+                                <p class="card-price">
                                     <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/>
                                 </p>
                                 <div class="card-buttons">
-                                    <button class="btn btn-add">Add to Cart</button>
-                                    <a href="#" class="btn btn-view">View More</a>
+                                    <button class="btn btn-add w-100">
+                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                    </button>
+                                    <a href="<c:url value='/books/detail/${book.bookID}' />" class="btn btn-view w-100">
+                                        View Details
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </c:forEach>
-
                 </div>
             </div>
         </section>
 
-        <section class="container my-4">
-            <div class="d-flex justify-content-between align-items-center">
-                <h5>BEST SELLER</h5>
-                <a href="#">SEE MORE</a>
+        <section class="container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="text-uppercase font-weight-bold">Best Seller</h5>
             </div>
-            <div class="row">
-                <c:forEach var="book" items="${bestSellers}">
-                    <div class="col"><div class="border p-4">${book}</div></div>
+            <div class="slider-container" id="bestSellerSlider">
+                <div class="slider best-seller-slider">
+                    <c:forEach var="book" items="${bestSellerBooks}">
+                        <div class="card">
+                            <img class="bookListImg"
+                                 src="<c:url value="/books/${book.bookID}.jpg" />"
+                                 alt="${book.title}" />
+                            <div class="card-body">
+                                <h5 class="card-title" title="${book.title}">${book.title}</h5>
+                                <p class="card-price">
+                                    <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/>
+                                </p>
+                                <div class="card-buttons">
+                                    <button class="btn btn-add w-100">
+                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                    </button>
+                                    <a href="<c:url value='/books/detail/${book.bookID}' />" class="btn btn-view w-100">
+                                        View Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </c:forEach>
-            </div>
-        </section>
-
-        <section class="container my-4">
-            <h5>CATEGORY</h5>
-            <div class="row">
-                <c:forEach var="category" items="${categories}">
-                    <div class="col"><div class="border p-4">${category}</div></div>
-                    </c:forEach>
+                </div>
             </div>
         </section>
 
@@ -95,8 +102,10 @@
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="<%=request.getContextPath()%>/js/main.js"></script>
+        <script src="<c:url value='/js/newArrivalSlider.js'/>"></script>
+        <script src="<c:url value='/js/bestSellerSlider.js'/>"></script>
+
+
+
     </body>
-
-
 </html>
