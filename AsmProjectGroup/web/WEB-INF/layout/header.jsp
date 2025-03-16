@@ -7,7 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<header class="navbar navbar-expand-lg" style="background-color: #0C191B;">
+<header class="navbar navbar-expand-lg" style="background-color: #D64D17;">
     <div class="container-fluid d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="#">
             <img src="books/storelogo_cropped.png" width="90%">

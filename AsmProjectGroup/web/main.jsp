@@ -101,7 +101,7 @@
             </div>
         </section>
 
-        <footer class="bg-light py-3 mt-4">
+            <footer class="py-3 mt-4" style="background-color: #D64D17; color: white;">
             <div class="container d-flex justify-content-between">
                 <div>LOGO COPYRIGHT</div>
                 <div>CONTACT</div>
