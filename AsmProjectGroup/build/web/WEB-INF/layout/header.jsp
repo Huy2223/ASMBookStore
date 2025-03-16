@@ -21,7 +21,7 @@
                     <a class="nav-link text-white text-center" href="<%= request.getContextPath() %>/MainController?action=popList">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white text-center" href="#">Category</a>
+                    <a class="nav-link text-white text-center" href="<%= request.getContextPath() %>/MainController?action=categoryList">Category</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white text-center" href="#">Best Seller</a>

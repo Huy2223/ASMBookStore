@@ -31,7 +31,7 @@
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
 
-                            <div class="d-grid mb-3">`
+                            <div class="d-grid mb-3">
                                 <button type="submit" value="login" name="action" class="btn btn-primary">Login</button>
                             </div>
                             ${errorMessage}

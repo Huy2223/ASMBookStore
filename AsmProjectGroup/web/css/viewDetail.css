@@ -1,34 +1,103 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Mar 16, 2025, 12:45:59 PM
-    Author     : ACER
-*/
+/* viewDetail.css */
 
-.book-container {
-    display: flex;
-    align-items: center;
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.book-image-cell {
+    width: 40%;
     padding: 20px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+    flex-shrink: 0; /* Ngăn cột ảnh thu nhỏ */
 }
+
+.book-details-cell {
+    width: 60%;
+    padding: 10px 20px 20px 20px;
+    flex: 1; /* Cho phép cột chi tiết mở rộng */
+}
+
 .book-image {
-    max-width: 300px;
+    max-width: 100%;
     border-radius: 10px;
+    min-height: 400px; /* Thay đổi kích thước ảnh theo ý muốn */
+    min-width: 300px;  /* Thay đổi kích thước ảnh theo ý muốn */
+    object-fit: contain; /* Hoặc cover tùy theo ý muốn */
+    flex-shrink: 0; /* Ngăn ảnh thu nhỏ */
 }
-.book-details {
-    margin-left: 30px;
-    flex-grow: 1;
+.book-title {
+    font-size: 2rem;
+    margin-bottom: 5px; /* Giảm margin bottom */
+    margin-top: 0;
 }
+
+.book-info-table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.book-info-table td {
+    padding: 8px;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+}
+
+.book-info-table td:first-child {
+    width: 150px;
+    font-weight: bold;
+}
+
 .btn-add {
-    background-color: #ff6f61;
+    background-color: orange;
     color: white;
     font-weight: bold;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    margin-top: 20px;
 }
+
 .btn-add:hover {
-    background-color: #e65b50;
+    background-color: #e69138;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Chiều cao tối thiểu bằng 100% viewport height */
+    margin: 0; /* Đảm bảo không có margin mặc định */
+}
+
+section.container {
+    flex: 1; /* Cho phép nội dung section mở rộng để chiếm không gian còn lại */
+}
+footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+}
+.btn-warning {
+    font-weight: bold; /* Làm chữ đậm hơn */
+}
+
+.btn-warning:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thêm bóng đổ khi hover */
+    transform: translateY(-2px); /* Hiệu ứng trượt nhẹ lên trên khi hover */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Hiệu ứng mượt mà */
+}
+
+/* Hoặc nếu bạn dùng btn-info */
+
+.btn-info {
+    font-weight: bold;
+}
+
+.btn-info:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }

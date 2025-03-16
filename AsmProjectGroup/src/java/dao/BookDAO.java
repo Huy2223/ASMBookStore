@@ -91,7 +91,7 @@ public class BookDAO {
                 + "LEFT JOIN BookCategories bc ON b.BookID = bc.BookID "
                 + "LEFT JOIN Categories c ON bc.CategoryID = c.CategoryID "
                 + "WHERE b.BookID = ? "
-                + "GROUP BY b.BookID, b.Title, b.AuthorID, a.Name, b.PublishedYear, b.Price, b.Description;";
+                + "GROUP BY b.BookID, b.Title, b.AuthorID, a.Name, b.PublishedYear, b.Price, b.Description";
 
         try (Connection connection = DBUtils.makeConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -104,7 +104,7 @@ public class BookDAO {
                 book.setTitle(resultSet.getString("Title"));
                 book.setAuthorID(resultSet.getInt("AuthorID"));
                 book.setAuthorName(resultSet.getString("AuthorName"));
-                book.setPublishedYear(resultSet.getInt("PublisherYear"));
+                book.setPublishedYear(resultSet.getInt("PublishedYear")); // Đã sửa tên cột
                 book.setPrice(resultSet.getDouble("Price"));
                 book.setDescription(resultSet.getString("Description"));
                 book.setCategories(resultSet.getString("Categories"));
@@ -115,5 +115,40 @@ public class BookDAO {
         }
 
         return book;
+    }
+
+    public List<Book> getAllBooksWithCategories() {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT b.BookID, b.Title, b.AuthorID, a.Name AS AuthorName, "
+                + "b.PublishedYear, b.Price, b.Description, "
+                + "STRING_AGG(c.CategoryName, ', ') AS Categories "
+                + "FROM Books b "
+                + "INNER JOIN Authors a ON b.AuthorID = a.AuthorID "
+                + "LEFT JOIN BookCategories bc ON b.BookID = bc.BookID "
+                + "LEFT JOIN Categories c ON bc.CategoryID = c.CategoryID "
+                + "GROUP BY b.BookID, b.Title, b.AuthorID, a.Name, b.PublishedYear, b.Price, b.Description";
+
+        try (Connection connection = DBUtils.makeConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                Book book = new Book();
+                book.setBookID(resultSet.getInt("BookID"));
+                book.setTitle(resultSet.getString("Title"));
+                book.setAuthorID(resultSet.getInt("AuthorID"));
+                book.setAuthorName(resultSet.getString("AuthorName"));
+                book.setPublishedYear(resultSet.getInt("PublishedYear"));
+                book.setPrice(resultSet.getDouble("Price"));
+                book.setDescription(resultSet.getString("Description"));
+                book.setCategories(resultSet.getString("Categories"));
+                books.add(book);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return books;
     }
 }

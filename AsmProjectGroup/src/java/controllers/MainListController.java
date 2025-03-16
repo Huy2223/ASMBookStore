@@ -43,7 +43,7 @@ public class MainListController extends HttpServlet {
                         List<Book> newArrivalBooks = new ArrayList<>();
                         List<Book> bestSellerBooks = new ArrayList<>();
                         List<Book> topRatedBooks = new ArrayList<>();
-
+                        
                         for (Book book : books) {
                             if (book.getBookID() >= 1 && book.getBookID() <= 5) {
                                 newArrivalBooks.add(book);

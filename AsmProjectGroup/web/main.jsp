@@ -73,7 +73,7 @@
                             <div class="card-body">
                                 <h5 class="card-title" title="${book.title}">${book.title}</h5>
                                 <p class="card-price">
-                                    <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/>
+                                   <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/>
                                 </p>
                                 <button class="btn-add-custom">
                                     <i class="fas fa-cart-plus"></i> Add
