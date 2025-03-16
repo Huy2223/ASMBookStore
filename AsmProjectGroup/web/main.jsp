@@ -32,6 +32,36 @@
             </div>
         </section>
 
+
+
+        <section class="container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="text-uppercase font-weight-bold">Best Seller</h5>
+            </div>
+            <div class="slider-container" id="bestSellerSlider">
+                <div class="slider best-seller-slider">
+                    <c:forEach var="book" items="${bestSellerBooks}">
+                        <div class="card">
+                            <img class="bookListImg"
+                                 src="<c:url value="/books/${book.bookID}.jpg" />"
+                                 alt="${book.title}" />
+                            <div class="card-body">
+                                <h5 class="card-title" title="${book.title}">${book.title}</h5>
+                                <p class="card-price">
+                                    <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/>
+                                </p>
+                                <button class="btn-add-custom">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                                <a href="<c:url value='ViewDetailController?id=${book.bookID}' />" class="view-details-link">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </section>
         <section class="container">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5 class="text-uppercase font-weight-bold">New Arrival</h5>
@@ -59,35 +89,6 @@
             </div>
         </section>
 
-        <section class="container">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="text-uppercase font-weight-bold">Best Seller</h5>
-            </div>
-            <div class="slider-container" id="bestSellerSlider">
-                <div class="slider best-seller-slider">
-                    <c:forEach var="book" items="${bestSellerBooks}">
-                        <div class="card">
-                            <img class="bookListImg"
-                                 src="<c:url value="/books/${book.bookID}.jpg" />"
-                                 alt="${book.title}" />
-                            <div class="card-body">
-                                <h5 class="card-title" title="${book.title}">${book.title}</h5>
-                                <p class="card-price">
-                                   <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/>
-                                </p>
-                                <button class="btn-add-custom">
-                                    <i class="fas fa-cart-plus"></i> Add
-                                </button>
-                                <a href="<c:url value='ViewDetailController?id=${book.bookID}' />" class="view-details-link">
-                                    View Details
-                                </a>
-                            </div>
-                        </div>
-                    </c:forEach>
-                </div>
-            </div>
-        </section>
-
         <section class="container my-4 text-center py-4 border">
             <h5>TÁC GIẢ NỔI BẬT</h5>
             <p>SHORT PORTFOLIO VỀ TÁC GIẢ</p>
@@ -97,11 +98,11 @@
             <div class="row">
                 <c:forEach var="author" items="${featuredAuthors}">
                     <div class="col"><div class="border p-5">${author}</div></div>
-                </c:forEach>
+                    </c:forEach>
             </div>
         </section>
 
-            <footer class="py-3 mt-4" style="background-color: #D64D17; color: white;">
+        <footer class="py-3 mt-4" style="background-color: #D64D17; color: white;">
             <div class="container d-flex justify-content-between">
                 <div>LOGO COPYRIGHT</div>
                 <div>CONTACT</div>

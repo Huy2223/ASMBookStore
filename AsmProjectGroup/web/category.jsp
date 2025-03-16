@@ -1,8 +1,3 @@
-<%-- 
-    Document   : category
-    Created on : Mar 16, 2025, 4:24:22 PM
-    Author     : ACER
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -18,7 +13,8 @@
 
         <div class="container mt-4">
             <div class="row">
-                <div class="col-md-2"> <h4>Categories</h4>
+                <div class="col-md-2">
+                    <h4>Categories</h4>
                     <form id="categoryFilterForm" action="CategoryController" method="get">
                         <c:forEach var="category" items="${categories}">
                             <div class="form-check">
@@ -31,17 +27,21 @@
                         <button type="submit" class="btn btn-primary mt-2">Filter</button>
                     </form>
                 </div>
-                <div class="col-md-8"> <h2>All Books</h2>
+                <div class="col-md-8">
+                    <h2>All Books</h2>
                     <div class="row">
                         <c:forEach var="book" items="${bookList}">
                             <div class="col-md-4 mb-4">
-                                <div class="card book-card">
+                                <div class="card book-card h-100">
                                     <img src="<c:url value='/books/${book.bookID}.jpg' />" class="card-img-top" alt="${book.title}">
-                                    <div class="card-body">
+                                    <div class="card-body d-flex flex-column">
                                         <h5 class="card-title">${book.title}</h5>
                                         <p class="card-text">Author: ${book.authorName}</p>
                                         <p class="card-text">Price: <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/></p>
-                                        <a href="<c:url value='/ViewDetailController?id=${book.bookID}' />" class="btn btn-primary">View Details</a>
+                                        <div class="d-flex justify-content-between mt-auto">
+                                            <a href="<c:url value='/ViewDetailController?id=${book.bookID}' />" class="btn btn-primary">View Details</a>
+                                            <button class="btn btn-success">Add to Cart</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
