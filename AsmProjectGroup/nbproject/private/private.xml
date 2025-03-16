@@ -4,13 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/FPTU/SP25/PRJ301/GIT/ASMBookStore/AsmProjectGroup/web/main.jsp</file>
-            <file>file:/D:/FPTU/SP25/PRJ301/GIT/ASMBookStore/AsmProjectGroup/src/java/controllers/MainController.java</file>
-            <file>file:/D:/FPTU/SP25/PRJ301/GIT/ASMBookStore/AsmProjectGroup/web/WEB-INF/layout/header.jsp</file>
-            <file>file:/D:/FPTU/SP25/PRJ301/GIT/ASMBookStore/AsmProjectGroup/web/css/main.css</file>
-            <file>file:/D:/FPTU/SP25/PRJ301/GIT/ASMBookStore/AsmProjectGroup/web/js/bestSellerSlider.js</file>
-            <file>file:/D:/FPTU/SP25/PRJ301/GIT/ASMBookStore/AsmProjectGroup/web/css/Tindex.css</file>
-            <file>file:/D:/FPTU/SP25/PRJ301/GIT/ASMBookStore/AsmProjectGroup/src/java/controllers/MainListController.java</file>
-            <file>file:/D:/FPTU/SP25/PRJ301/GIT/ASMBookStore/AsmProjectGroup/src/java/controllers/BookListController.java</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/ASMBookStore/AsmProjectGroup/src/java/controllers/ViewDetailController.java</file>
         </group>
     </open-files>
 </project-private>

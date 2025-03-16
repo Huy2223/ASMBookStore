@@ -49,7 +49,7 @@
                                 <button class="btn-add-custom">
                                     <i class="fas fa-cart-plus"></i> Add
                                 </button>
-                                <a href="<c:url value='/books/detail/${book.bookID}' />" class="view-details-link">
+                                <a href="<c:url value='ViewDetailController?id=${book.bookID}' />" class="view-details-link">
                                     View Details
                                 </a>
                             </div>
@@ -78,7 +78,7 @@
                                 <button class="btn-add-custom">
                                     <i class="fas fa-cart-plus"></i> Add
                                 </button>
-                                <a href="<c:url value='/books/detail/${book.bookID}' />" class="view-details-link">
+                                <a href="<c:url value='ViewDetailController?id=${book.bookID}' />" class="view-details-link">
                                     View Details
                                 </a>
                             </div>

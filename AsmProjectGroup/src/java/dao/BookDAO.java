@@ -80,4 +80,40 @@ public class BookDAO {
 
         return books;
     }
+
+    public Book getBookById(int bookId) {
+        Book book = null;
+        String sql = "SELECT b.BookID, b.Title, b.AuthorID, a.Name AS AuthorName, "
+                + "b.PublishedYear, b.Price, b.Description, "
+                + "STRING_AGG(c.CategoryName, ', ') AS Categories "
+                + "FROM Books b "
+                + "INNER JOIN Authors a ON b.AuthorID = a.AuthorID "
+                + "LEFT JOIN BookCategories bc ON b.BookID = bc.BookID "
+                + "LEFT JOIN Categories c ON bc.CategoryID = c.CategoryID "
+                + "WHERE b.BookID = ? "
+                + "GROUP BY b.BookID, b.Title, b.AuthorID, a.Name, b.PublishedYear, b.Price, b.Description;";
+
+        try (Connection connection = DBUtils.makeConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, bookId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                book = new Book();
+                book.setBookID(resultSet.getInt("BookID"));
+                book.setTitle(resultSet.getString("Title"));
+                book.setAuthorID(resultSet.getInt("AuthorID"));
+                book.setAuthorName(resultSet.getString("AuthorName"));
+                book.setPublishedYear(resultSet.getInt("PublisherYear"));
+                book.setPrice(resultSet.getDouble("Price"));
+                book.setDescription(resultSet.getString("Description"));
+                book.setCategories(resultSet.getString("Categories"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return book;
+    }
 }

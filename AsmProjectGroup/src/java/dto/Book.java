@@ -1,16 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dto;
 
-import java.sql.Date;
-
-/**
- *
- * @author ACER
- */
 public class Book {
     private int bookID;
     private String title;
@@ -19,11 +8,12 @@ public class Book {
     private int publishedYear;
     private double price;
     private String description;
+    private String categories;  // Thêm thuộc tính lưu danh sách thể loại
 
     public Book() {
     }
 
-    public Book(int bookID, String title, String authorName, int authorID, int publishedYear, double price, String description) {
+    public Book(int bookID, String title, String authorName, int authorID, int publishedYear, double price, String description, String categories) {
         this.bookID = bookID;
         this.title = title;
         this.authorName = authorName;
@@ -31,6 +21,7 @@ public class Book {
         this.publishedYear = publishedYear;
         this.price = price;
         this.description = description;
+        this.categories = categories;  // Khởi tạo danh sách thể loại
     }
 
     public int getBookID() {
@@ -89,9 +80,11 @@ public class Book {
         this.description = description;
     }
 
-    
+    public String getCategories() {
+        return categories;
+    }
 
-    
-    
-    
+    public void setCategories(String categories) {
+        this.categories = categories;
+    }
 }
