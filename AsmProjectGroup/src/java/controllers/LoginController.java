@@ -53,9 +53,12 @@ public class LoginController extends HttpServlet {
                         List<Book> newArrivalBooks = new ArrayList<>();
                         List<Book> bestSellerBooks = new ArrayList<>();
                         List<Book> topRatedBooks = new ArrayList<>();
-
+                        List<Book> featuredAuthorBooks = new ArrayList<>();
                         for (Book book : books) {
-                            if (book.getBookID() >= 1 && book.getBookID() <= 5) {
+                            if (book.getBookID() == 1 || book.getBookID() == 2 || book.getBookID() == 5) {
+                                featuredAuthorBooks.add(book);
+                            }
+                            if (book.getBookID() >= 16 && book.getBookID() <= 20) {
                                 newArrivalBooks.add(book);
                             } else if (book.getBookID() >= 6 && book.getBookID() <= 10) {
                                 bestSellerBooks.add(book);
@@ -63,7 +66,7 @@ public class LoginController extends HttpServlet {
                                 topRatedBooks.add(book);
                             }
                         }
-
+                        request.setAttribute("authorBook", featuredAuthorBooks);
                         request.setAttribute("newArrivalBooks", newArrivalBooks);
                         request.setAttribute("bestSellerBooks", bestSellerBooks);
                         request.setAttribute("topRatedBooks", topRatedBooks);

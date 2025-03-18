@@ -235,3 +235,41 @@ section.container h5.text-uppercase::after { /* Thêm đường gạch chân */
     margin-right: 10px; /* Thêm khoảng cách giữa các card trong slider */
     scroll-snap-align: start; /* Bắt đầu snap khi cuộn */
 }
+.featured-author-section .card {
+    border: 1px solid #ddd;
+    border-radius: 2px; /* Giảm border radius */
+    overflow: hidden;
+    margin-bottom: 3px; /* Giảm margin card */
+    width: 80px;  /* Đặt chiều rộng cụ thể */
+    height: 120px; /* Đặt chiều cao cụ thể */
+    display: flex;
+    flex-direction: column; /* Sắp xếp nội dung theo chiều dọc */
+}
+
+.featured-author-section .bookListImg {
+    width: 100%;
+    height: 60px; /* Điều chỉnh kích thước hình ảnh */
+    object-fit: cover; /* Đảm bảo hình ảnh vừa khít */
+}
+
+.featured-author-section .card-body {
+    padding: 3px; /* Giảm padding card body */
+    text-align: center;
+    flex-grow: 1; /* Cho phép card-body mở rộng */
+}
+
+.featured-author-section .card-title {
+    font-size: 8px; /* Giảm kích thước tiêu đề card */
+    margin-bottom: 1px; /* Giảm margin tiêu đề card */
+}
+
+.featured-author-section .card-price {
+    font-size: 7px; /* Giảm kích thước giá card */
+    margin-bottom: 1px; /* Giảm margin giá card */
+}
+
+.featured-author-section .btn-add-custom, .featured-author-section .view-details-link {
+    font-size: 7px; /* Giảm kích thước nút */
+    padding: 2px 3px; /* Giảm padding nút */
+    margin-top: 2px; /* Giảm margin nút */
+}
