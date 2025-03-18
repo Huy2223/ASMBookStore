@@ -12,7 +12,7 @@
     </session-config>
 
     <welcome-file-list>
-        <welcome-file>auth/login.jsp</welcome-file>
+        <welcome-file>MainListController</welcome-file>
     </welcome-file-list>
 
     <!-- Định nghĩa Servlet -->

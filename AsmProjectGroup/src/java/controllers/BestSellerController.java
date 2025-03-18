@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controllers;
 
 import dao.BookDAO;
@@ -21,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ACER
  */
-@WebServlet(name = "MainListController", urlPatterns = {"/MainListController"})
-public class MainListController extends HttpServlet {
+@WebServlet(name = "BestSellerController", urlPatterns = {"/BestSellerController"})
+public class BestSellerController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,28 +34,15 @@ public class MainListController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             BookDAO bookDAO = new BookDAO();
-            List<Book> books = bookDAO.getAllBooksWithAuthors();
-            List<Book> newArrivalBooks = new ArrayList<>();
+            List<Book> books = bookDAO.getAllBooksWithCategories();
             List<Book> bestSellerBooks = new ArrayList<>();
-            List<Book> topRatedBooks = new ArrayList<>();
-            List<Book> featuredAuthorBooks = new ArrayList<>();
             for (Book book : books) {
-                if (book.getBookID() == 1 || book.getBookID() == 2 || book.getBookID() == 5) {
-                    featuredAuthorBooks.add(book);
-                }
-                if (book.getBookID() >= 1 && book.getBookID() <= 5) {
-                    newArrivalBooks.add(book);
-                } else if (book.getBookID() >= 6 && book.getBookID() <= 10) {
+                if (book.getBookID() >= 6 && book.getBookID() <= 10 || book.getBookID() >= 21 && book.getBookID() <= 27) {
                     bestSellerBooks.add(book);
-                } else if (book.getBookID() >= 11 && book.getBookID() <= 15) {
-                    topRatedBooks.add(book);
                 }
             }
-            request.setAttribute("authorBook", featuredAuthorBooks);
-            request.setAttribute("newArrivalBooks", newArrivalBooks);
             request.setAttribute("bestSellerBooks", bestSellerBooks);
-            request.setAttribute("topRatedBooks", topRatedBooks);
-            request.getRequestDispatcher("main.jsp").forward(request, response);
+            request.getRequestDispatcher("bestSeller.jsp").forward(request, response);
         }
     }
 

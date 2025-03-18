@@ -16,14 +16,14 @@
         <div class="cart-icon">
             <a href="<c:url value='/cart' />">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">
+<!--                <span class="cart-count">
                     <c:if test="${not empty cartItems}">
                         <c:out value="${cartItems.size()}"/>
                     </c:if>
                     <c:if test="${empty cartItems}">
                         0
                     </c:if>
-                </span>
+                </span>-->
             </a>
         </div>
         <section class="container my-3">
