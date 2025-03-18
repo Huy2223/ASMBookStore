@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
+<!DOCTYPE html><%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -89,16 +89,31 @@
             </div>
         </section>
 
-        <section class="container my-4 text-center py-4 border">
-            <h5>TÁC GIẢ NỔI BẬT</h5>
-            <p>SHORT PORTFOLIO VỀ TÁC GIẢ</p>
-        </section>
-
-        <section class="container my-4">
+        <section class="container my-4 text-center py-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="text-uppercase font-weight-bold">Featured Author</h5>
+            </div>
+            <div><img src="books/shortP.jpg" alt="Featured Author Image" class="img-fluid mb-3"></div>
             <div class="row">
-                <c:forEach var="author" items="${featuredAuthors}">
-                    <div class="col"><div class="border p-5">${author}</div></div>
-                    </c:forEach>
+                <c:forEach var="book" items="${authorBook}">
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img class="bookListImg img-fluid" src="<c:url value='/books/${book.bookID}.jpg' />" alt="${book.title}" />
+                            <div class="card-body text-center">
+                                <h5 class="card-title" title="${book.title}">${book.title}</h5>
+                                <p class="card-price">
+                                    <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/>
+                                </p>
+                                <button class="btn-add-custom">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>
+                                <a href="<c:url value='ViewDetailController?id=${book.bookID}' />" class="view-details-link">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
         </section>
 

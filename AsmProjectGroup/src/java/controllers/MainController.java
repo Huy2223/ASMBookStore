@@ -39,6 +39,10 @@ public class MainController extends HttpServlet {
                     case "categoryList":
                         url = "CategoryController";
                         break;
+                    case "logout":
+                        url = "LogoutController";
+                        break;
+                        
                 }
             }
 

@@ -44,19 +44,23 @@ public class BookListController extends HttpServlet {
             List<Book> newArrivalBooks = new ArrayList<>();
             List<Book> bestSellerBooks = new ArrayList<>();
             List<Book> topRatedBooks = new ArrayList<>();
-
+            List<Book> featuredAuthorBooks = new ArrayList<>();
             for (Book book : books) {
+                if (book.getBookID() == 1 || book.getBookID() == 3 || book.getBookID() == 5) {
+                    featuredAuthorBooks.add(book);
+                }
                 if (book.getBookID() >= 1 && book.getBookID() <= 5) {
                     newArrivalBooks.add(book);
                 } else if (book.getBookID() >= 6 && book.getBookID() <= 10) {
                     bestSellerBooks.add(book);
                 } else if (book.getBookID() >= 11 && book.getBookID() <= 15) {
                     topRatedBooks.add(book);
-                }
+                } 
             }
             request.setAttribute("newArrivalBooks", newArrivalBooks);
             request.setAttribute("bestSellerBooks", bestSellerBooks);
             request.setAttribute("topRatedBooks", topRatedBooks);
+            request.setAttribute("authorBook", featuredAuthorBooks);
             request.getRequestDispatcher("bookManagement.jsp").forward(request, response);
         }
     }
