@@ -10,5 +10,8 @@
             <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/main.jsp</file>
             <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/cart.jsp</file>
         </group>
+        <group name="PRJ301">
+            <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/web/WEB-INF/layout/footer.jsp</file>
+        </group>
     </open-files>
 </project-private>
