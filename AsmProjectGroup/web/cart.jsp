@@ -1,50 +1,35 @@
-<%-- 
-    Document   : cart
-    Created on : Mar 19, 2025, 8:51:19 PM
-    Author     : ACER
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Your Cart</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <%@ include file="/WEB-INF/layout/header.jsp"%>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Your Shopping Cart</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <%@ include file="/WEB-INF/layout/header.jsp"%>
 
-    <div class="container mt-5">
-        <h2>Your Shopping Cart</h2>
-        <c:choose>
-            <c:when test="${not empty sessionScope.cart}">
+        <div class="container mt-5">
+            <h2>Your Shopping Cart</h2>
+            <c:if test="${not empty sessionScope.shopping_cart.carts}">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Author</th>
+                            <th>Book Title</th>
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Total</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="item" items="${sessionScope.cart.items}">
+                        <c:forEach var="item" items="${sessionScope.shopping_cart.carts}">
                             <tr>
                                 <td>${item.book.title}</td>
-                                <td>${item.book.authorName}</td>
                                 <td><fmt:formatNumber value="${item.book.price}" type="currency" currencySymbol="$"/></td>
-                                <td>
-                                    <form action="<c:url value='/CartServlet' />" method="post">
-                                        <input type="hidden" name="action" value="update">
-                                        <input type="hidden" name="bookID" value="${item.book.bookID}">
-                                        <input type="number" name="quantity" value="${item.quantity}" min="1">
-                                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                                    </form>
-                                </td>
+                                <td>${item.quantity}</td>
                                 <td><fmt:formatNumber value="${item.book.price * item.quantity}" type="currency" currencySymbol="$"/></td>
                                 <td>
                                     <form action="<c:url value='/CartServlet' />" method="post">
@@ -56,25 +41,23 @@
                             </tr>
                         </c:forEach>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-right"><strong>Grand Total:</strong></td>
+                            <td><fmt:formatNumber value="${sessionScope.shopping_cart.totalAmount}" type="currency" currencySymbol="$"/></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
                 </table>
-                <form action="<c:url value='/CartServlet' />" method="post">
-                    <input type="hidden" name="action" value="clear">
-                    <button type="submit" class="btn btn-warning">Clear Cart</button>
+                <form action="<c:url value='/OrderServlet' />" method="post">
+                    <button type="submit" class="btn btn-success">Checkout</button>
                 </form>
-            </c:when>
-            <c:otherwise>
+            </c:if>
+            <c:if test="${empty sessionScope.shopping_cart.carts}">
                 <p>Your cart is empty.</p>
-            </c:otherwise>
-        </c:choose>
-    </div>
-
-    <footer class="py-3 mt-4" style="background-color: #D64D17; color: white;">
-        <div class="container d-flex justify-content-between">
-            <div>LOGO COPYRIGHT</div>
-            <div>CONTACT</div>
-            <div>ĐĂNG KÍ NHẬN TIN<br>email</div>
+            </c:if>
         </div>
-    </footer>
-</body>
-</html>
 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

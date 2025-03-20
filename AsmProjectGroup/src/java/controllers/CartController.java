@@ -70,7 +70,7 @@ public class CartController extends HttpServlet {
 
         // Cập nhật giỏ hàng trong session
         CartDAO.setCartInSession(request, cart);
-        response.sendRedirect("main.jsp");
+        response.sendRedirect("MainListController");
     }
 
     private void removeFromCart(HttpServletRequest request, HttpServletResponse response)
