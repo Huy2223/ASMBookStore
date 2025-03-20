@@ -1,7 +1,41 @@
 footer a {
-  transition: color 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 footer a:hover {
-  color: #ddd;
+    color: #ddd;
 }
+
+/* Thêm đoạn này để căn giữa cột logo theo chiều dọc */
+.logo-section .d-inline-block {
+    display: inline-block; /* Để căn giữa logo và nội dung trong cột */
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+}
+
+
+/* Thêm đoạn này để dàn đều các liên kết trong "CUSTOMIZED ORDER" */
+.custom-order-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   
+}
+
+/* Thêm margin cho các liên kết */
+.custom-order-list a {
+    margin-bottom: 10px;
+}
+
+.stayconnect{
+    margin-bottom: 25px; 
+}
+
+.list-shortcut{
+    margin-top: 30px;
+}
+
+.payment-icons img{
+    margin-left: 10px;
+}
+
+
+

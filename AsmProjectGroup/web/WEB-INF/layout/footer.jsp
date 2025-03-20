@@ -1,40 +1,49 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css">
-<footer class="py-5" style="background-color: #D64D17; color: white;"> 
-    <div class="container d-flex justify-content-between">
-        <div class="d-flex flex-column">
-            <img src="<c:url value='/books/kitten.png' />" alt="Logo" style="height: 120px; width: 50%">
-            <span>&copy; Copyright by Group 7</span>
-            <p class="mt-3">
-                <i class="bi bi-geo-alt mr-2"></i> 395/13 TL28 Thạnh Lộc Q.12 TP.HCM
-            </p>
-            <p><i class="bi bi-phone mr-2"></i> 096 7074 354</p>
-        </div>
-        <div class="d-flex flex-column">
-            <span style="font-weight: bold; margin-bottom: 5px;">CUSTOMIZED ORDER</span>
-            <c:if test="${empty userInfo}">
-                <a href="<%= request.getContextPath()%>/auth/login.jsp" style="color: white; text-decoration: none; margin-bottom: 5px;">Login</a>
-            </c:if>
-            <c:if test="${not empty userInfo}">
-                <a href="<%= request.getContextPath()%>/MainController?action=popList" style="color: white; text-decoration: none; margin-bottom: 5px;">Homepage</a>
-            </c:if>
-            <a href="<%= request.getContextPath()%>/MainController?action=categoryList" style="color: white; text-decoration: none; margin-bottom: 5px;">Category</a>
-            <a href="<%= request.getContextPath()%>/MainController?action=bestSellerList" style="color: white; text-decoration: none; margin-bottom: 5px;">Best Seller</a>
-        </div>
-        <div class="d-flex flex-column align-items-center">
-            <span>STAY CONNECT</span>
-            <div class="d-flex mt-3">
-                <a href="#" class="mx-2"><img src="<c:url value='/books/facebook.png' />" alt="Facebook" style="height: 30px;"></a>
-                <a href="#" class="mx-2"><img src="<c:url value='/books/instagram.png' />" alt="Instagram" style="height: 30px;"></a>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<footer class="py-3 text-white" style="background-color: #D64D17;">
+    <div class="container">
+        <div class="row align-items-center justify-content-around"> <div class="col-md-6 text-center text-md-left">
+                <div class="d-inline-block"> <img src="<c:url value='/books/kitten.png' />" alt="Logo" class="img-fluid" style="max-height: 155px; width: auto; margin-left: 30px;">                  
+                    <p class="mt-3">
+                        <i class="bi bi-geo-alt mr-2"></i> 395/13 TL28 Street, Thanh Loc Ward, District 12, Ho Chi Minh City 
+                    </p>
+                    <p><i class="bi bi-phone mr-2"></i> 096 7074 354</p>
+                </div>
             </div>
-            <div class="d-flex mt-3">
-                <img src="<c:url value='/books/visa.png' />" alt="Visa" style="height: 25px; margin-right: 5px;">
-                <img src="<c:url value='/books/mastercard.png' />" alt="Mastercard" style="height: 25px; margin-right: 5px;">
-                <img src="<c:url value='/books/amex.png' />" alt="Amex" style="height: 25px; margin-right: 5px;">
-                <img src="<c:url value='/books/paypal.png' />" alt="Paypal" style="height: 25px; margin-right: 5px;">
-                <img src="<c:url value='/images/bitcoin.png' />" alt="Bitcoin" style="height: 25px;">
+            <div class="col-md-3 text-center text-md-left">
+                <span class="font-weight-bold d-block mb-2" style="margin-top: 50px;">SHORTCUTS</span>   
+                <div class="list-shortcut">
+                    <div class="custom-order-list"> <c:if test="${empty userInfo}">
+                            <a href="<%= request.getContextPath()%>/auth/login.jsp" class="d-block text-white">Login</a>
+                        </c:if>
+                        <c:if test="${not empty userInfo}">
+                            <a href="<%= request.getContextPath()%>/MainController?action=popList" class="d-block text-white">Home Page</a>
+                        </c:if>
+                        <a href="<%= request.getContextPath()%>/MainController?action=categoryList" class="d-block text-white">Category</a>
+                        <a href="<%= request.getContextPath()%>/MainController?action=bestSellerList" class="d-block text-white">Best Seller</a>
+                        <a href="#" class="d-block text-white">New Arrival</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3 text-center stayconnect">
+                <span class="font-weight-bold d-block mb-2">STAY CONNECT</span>
+                <div class="mt-3">
+                    <a href="https://www.facebook.com/duc1402" class="mx-2" target="_blank"><img src="<c:url value='/books/facebook.png' />" alt="Facebook" style="height: 30px;"></a>
+                    <a href="https://www.instagram.com/_whoishducc_" class="mx-2" target="_blank"><img src="<c:url value='/books/instagram-removebg.png' />" alt="Instagram" style="height: 23px;"></a>
+                </div>
+                <div class="mt-3 payment-icons">
+                    <img src="<c:url value='/books/visa.png' />" alt="Visa" style="height: 25px; border-radius: 3px;">
+                    <img src="<c:url value='/books/mastercard.png' />" alt="Mastercard" style="height: 25px; background-color: white; border-radius: 3px;">
+                    <img src="<c:url value='/books/amex.png' />" alt="Amex" style="height: 25px; border-radius: 3px;">
+                    <img src="<c:url value='/books/paypal.png' />" alt="Paypal" style="height: 25px; width: 37px; border-radius: 3px;">                  
+                </div>
             </div>
         </div>
+                <hr/>
+        <div class="text-center mt-4"> <p style="font-size: 1em; color: white;">&copy; Copyright by Group 7</p>
+    </div>
     </div>
 </footer>
