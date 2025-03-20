@@ -28,10 +28,10 @@
             </button>
         </div>
 
-        <section class="container my-6">
-            <div class="text-center py-3">
-                <img class="bookListImg" src="<c:url value="/books/photo-background.jpg" />"
-                     alt="Book Image"/>
+        <section class="my-6"> 
+            <div class="text-center " style="width: 100%; ">
+                <img src="<c:url value="/books/photo-background.jpg" />"
+                     alt="Book Image" style="width: 100%; display: block; height: 800px;"/>
             </div>
         </section>
 
