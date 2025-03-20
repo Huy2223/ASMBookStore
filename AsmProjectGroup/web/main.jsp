@@ -187,13 +187,7 @@
             </div>
         </section>
 
-        <footer class="py-3 mt-4" style="background-color: #D64D17; color: white;">
-            <div class="container d-flex justify-content-between">
-                <div>LOGO COPYRIGHT</div>
-                <div>CONTACT</div>
-                <div>ĐĂNG KÍ NHẬN TIN<br>email</div>
-            </div>
-        </footer>
+       <%@ include file="/WEB-INF/layout/footer.jsp"%>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="<c:url value='/js/newArrivalSlider.js'/>"></script>
