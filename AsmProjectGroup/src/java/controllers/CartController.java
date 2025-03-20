@@ -43,6 +43,14 @@ public class CartController extends HttpServlet {
                 addToCart(request, response);
             } else if ("remove".equals(action)) {
                 removeFromCart(request, response);
+            } else {
+                // Xử lý khi truy cập trực tiếp cart.jsp
+                Cart cart = CartDAO.getCartFromSession(request);
+                if (cart == null) {
+                    cart = new Cart();
+                    CartDAO.setCartInSession(request, cart);
+                }
+                response.sendRedirect("cart.jsp");
             }
         }
     }

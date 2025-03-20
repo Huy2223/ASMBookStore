@@ -6,10 +6,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Book Store</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/Tindex.css">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css">
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     </head>
     <body class="">
         <%@ include file="/WEB-INF/layout/header.jsp"%>
@@ -52,7 +52,7 @@
                                     <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="$"/>
                                 </p>
 
-                                <c:if test="${not empty sessionScope.user}">
+                                <c:if test="${not empty sessionScope.userInfo}">
                                     <form action="<c:url value='/CartServlet' />" method="post">
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="bookID" value="${book.bookID}">
@@ -66,7 +66,7 @@
                                     </form>
                                 </c:if>
 
-                                <c:if test="${empty sessionScope.user}">
+                                <c:if test="${empty sessionScope.userInfo}">
                                     <button type="button" class="btn btn-warning btn-add-custom">
                                         <i class="fas fa-cart-plus"></i> Add
                                     </button>
@@ -101,7 +101,7 @@
                                                       currencySymbol="$"/>
                                 </p>
 
-                                <c:if test="${not empty sessionScope.user}">
+                                <c:if test="${not empty sessionScope.userInfo}">
                                     <form action="<c:url value='/CartServlet' />" method="post">
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="bookID" value="${book.bookID}">
@@ -115,7 +115,7 @@
                                     </form>
                                 </c:if>
 
-                                <c:if test="${empty sessionScope.user}">
+                                <c:if test="${empty sessionScope.userInfo}">
                                     <button type="button" class="btn btn-warning btn-add-custom">
                                         <i class="fas fa-cart-plus"></i> Add
                                     </button>
@@ -156,7 +156,7 @@
                                                       currencySymbol="$"/>
                                 </p>
 
-                                <c:if test="${not empty sessionScope.user}">
+                                <c:if test="${not empty sessionScope.userInfo}">
                                     <form action="<c:url value='/CartServlet' />" method="post">
                                         <input type="hidden" name="action" value="add">
                                         <input type="hidden" name="bookID" value="${book.bookID}">
@@ -170,14 +170,14 @@
                                     </form>
                                 </c:if>
 
-                                <c:if test="${empty sessionScope.user}">
+                                <c:if test="${empty sessionScope.userInfo}">
                                     <button type="button" class="btn btn-warning btn-add-custom">
                                         <i class="fas fa-cart-plus"></i> Add
                                     </button>
                                 </c:if>
 
                                 <a href="<c:url value='ViewDetailController?id=${book.bookID}' />"
-                                   class="btn btn-primary view-details-link featured-author-view-details">
+                                   class="view-details-link">
                                     View Details
                                 </a>
                             </div>
@@ -187,35 +187,52 @@
             </div>
         </section>
 
-       <%@ include file="/WEB-INF/layout/footer.jsp"%>
+        <%@ include file="/WEB-INF/layout/footer.jsp"%>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="<c:url value='/js/newArrivalSlider.js'/>"></script>
-        <script src="<c:url value='/js/bestSellerSlider.js'/>"></script>
 
-        <div id="loginAlert" class="alert alert-danger alert-dismissible fade show"
-             role="alert" style="display: none;">
-            Please login before add to cart.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+
+
+
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Authentication Required</h5>
+                    </div>
+                    <div class="modal-body">
+                        Please login before adding items to your cart.
+                    </div>
+                    <div class="modal-footer">
+                        <a href="<%= request.getContextPath()%>/auth/login.jsp" class="btn btn-primary">Login</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
+            $(document).ready(function () {
                 const addToCartButtons = document.querySelectorAll(".btn-add-custom");
 
                 addToCartButtons.forEach(button => {
                     button.addEventListener("click", function (event) {
-                        let isUserLoggedIn = ${not empty sessionScope.user};
-
+                        let isUserLoggedIn = ${not empty sessionScope.userInfo};
                         if (!isUserLoggedIn) {
-                            event.preventDefault(); // Ngăn form submit
-                            document.getElementById("loginAlert").style.display = "block";
+                            event.preventDefault();
+                            $('#loginModal').modal('show');
                         }
                     });
                 });
             });
         </script>
-    </body>
+        <script src="<c:url value='/js/newArrivalSlider.js'/>"></script>
+        <script src="<c:url value='/js/bestSellerSlider.js'/>"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<c:url value='/js/newArrivalSlider.js'/>"></script>
+    <script src="<c:url value='/js/bestSellerSlider.js'/>"></script>
+
+</body>
 </html>

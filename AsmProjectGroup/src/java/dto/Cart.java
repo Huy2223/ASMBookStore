@@ -15,11 +15,12 @@ import java.util.List;
  * @author ACER
  */
 public class Cart {
+
     private int cartID;
     private int accountID;
     private boolean status;
     private float total;
-    List<CartDetail> carts = new ArrayList<>();
+    public List<CartDetail> carts = new ArrayList<>();
 
     public Cart() {
     }
@@ -62,10 +63,13 @@ public class Cart {
     public void setTotal(float total) {
         this.total = total;
     }
-    
-     // Thêm sản phẩm vào giỏ hàng
+    public List<CartDetail> getCarts() {
+        return carts;
+    }
+
+    // Thêm sản phẩm vào giỏ hàng
     public void addItem(Book book, int quantity) {
-        
+
         // Kiểm tra nếu sản phẩm đã tồn tại trong giỏ hàng
         for (CartDetail item : carts) {
             if (item.getBook().getBookID() == book.getBookID()) {
@@ -74,16 +78,16 @@ public class Cart {
                 return;
             }
         }
-        
+
         // Nếu chưa tồn tại, thêm mục mới vào giỏ hàng
         CartDetail newItem = new CartDetail(book, quantity);
         carts.add(newItem);
     }
-    
+
     // Cập nhật số lượng sản phẩm trong giỏ hàng
     public void updateItem(int bookID, int quantity) {
         for (CartDetail item : carts) {
-            if (item.getBook().getBookID()== bookID) {
+            if (item.getBook().getBookID() == bookID) {
                 item.setQuantity(quantity);
                 if (quantity <= 0) {
                     removeItem(bookID);
@@ -92,7 +96,7 @@ public class Cart {
             }
         }
     }
-    
+
     // Xóa một sản phẩm khỏi giỏ hàng
     public void removeItem(int bookID) {
         Iterator<CartDetail> iterator = carts.iterator();
@@ -104,21 +108,21 @@ public class Cart {
             }
         }
     }
-    
+
     // Xóa tất cả sản phẩm khỏi giỏ hàng
     public void clear() {
         carts.clear();
     }
-    
+
     // Tính tổng tiền cho tất cả sản phẩm trong giỏ hàng
     public float getTotalAmount() {
         float total = 0;
         for (CartDetail item : carts) {
-            total += (item.getUnitPrice());
+            total += (item.getBook().getPrice() * item.getQuantity());
         }
         return total;
     }
-    
+
     // Lấy tổng số lượng sản phẩm trong giỏ hàng
     public int getTotalItems() {
         int count = 0;
@@ -127,12 +131,12 @@ public class Cart {
         }
         return count;
     }
-    
+
     // Kiểm tra giỏ hàng rỗng
     public boolean isEmpty() {
         return carts.isEmpty();
     }
-    
+
     // Kiểm tra sản phẩm có tồn tại trong giỏ hàng
     public boolean containsProduct(int bookID) {
         for (CartDetail item : carts) {
@@ -142,7 +146,7 @@ public class Cart {
         }
         return false;
     }
-    
+
     // Lấy một mục giỏ hàng từ ID sản phẩm
     public CartDetail getItemByProductId(int bookID) {
         for (CartDetail item : carts) {
@@ -153,5 +157,3 @@ public class Cart {
         return null;
     }
 }
-  
-

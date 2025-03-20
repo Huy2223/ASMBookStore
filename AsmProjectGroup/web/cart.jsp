@@ -27,10 +27,22 @@
                     <tbody>
                         <c:forEach var="item" items="${sessionScope.shopping_cart.carts}">
                             <tr>
-                                <td>${item.book.title}</td>
-                                <td><fmt:formatNumber value="${item.book.price}" type="currency" currencySymbol="$"/></td>
+                                <td>
+                                    <c:if test="${not empty item.book}">
+                                        ${item.book.title}
+                                    </c:if>
+                                </td>
+                                <td>
+                                    <c:if test="${not empty item.book}">
+                                        <fmt:formatNumber value="${item.book.price}" type="currency" currencySymbol="$"/>
+                                    </c:if>
+                                </td>
                                 <td>${item.quantity}</td>
-                                <td><fmt:formatNumber value="${item.book.price * item.quantity}" type="currency" currencySymbol="$"/></td>
+                                <td>
+                                    <c:if test="${not empty item.book}">
+                                        <fmt:formatNumber value="${item.book.price * item.quantity}" type="currency" currencySymbol="$"/>
+                                    </c:if>
+                                </td>
                                 <td>
                                     <form action="<c:url value='/CartServlet' />" method="post">
                                         <input type="hidden" name="action" value="remove">
