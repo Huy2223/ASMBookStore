@@ -1,26 +1,25 @@
-.slider-container {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 30px;
-    padding: 10px 0;
-}
-
 .slider {
     display: flex;
-    gap: 12px;
-    transition: transform 0.4s ease-in-out;
-    margin: 0;
+    gap: 15px;
+    width: max-content;
+}
+
+.slider-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
 }
 
 .card {
-    flex: 0 0 calc(25% - 12px); /* Vẫn hiển thị 4 card */
-    min-width: 180px; /* Giảm chiều rộng tối thiểu */
+    flex: 0 0 calc(100% / 5); /* Đảm bảo mỗi sách chiếm 1/5 không gian */
+    max-width: calc(100% / 5); /* Không giới hạn max-width */
+    min-width: 180px; /* Đảm bảo không bị co quá nhỏ */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     user-select: none;
     background-color: #f0f0f0;
-    cursor: grab;
+    cursor: grab; 
 }
 
 
@@ -36,6 +35,7 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     cursor: grab;
+    width: max-content;
 }
 
 .new-arrival-slider::-webkit-scrollbar,

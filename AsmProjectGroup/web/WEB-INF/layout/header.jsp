@@ -28,7 +28,7 @@
                     <a class="nav-link text-white text-center" href="<%= request.getContextPath()%>/MainController?action=bestSellerList">Best Seller</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white text-center" href="#">New Arrival</a>
+                    <a class="nav-link text-white text-center" href="<%= request.getContextPath()%>/MainController?action=newArrivalList">New Arrival</a>
                 </li>
             </ul>
         </div>
@@ -37,7 +37,8 @@
                 <span class="text-white me-3" style="font-size: 1.3rem;">Hello, ${userInfo.userName}</span>
             </c:if>
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search books..." aria-label="Search" style="width: 250px; font-size: 1.1rem;">
+                <input class="form-control me-2" type="search" id="searchInput" placeholder="Search books..." aria-label="Search" style="width: 250px; font-size: 1.1rem;">
+                <div id="searchResults" style="position: absolute; background-color: white; border: 1px solid #ccc; width: 250px; display: none; z-index: 1000;"></div>
                 <a href="<%= request.getContextPath()%>/cart.jsp" class="btn btn-outline-light">
                     <i class="bi bi-cart"></i>
                 </a>
@@ -50,4 +51,41 @@
             </form>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#searchInput').on('input', function () {
+                let searchTerm = $(this).val();
+                if (searchTerm.length >= 3) {
+                    $.ajax({
+                        url: '<%= request.getContextPath()%>/SearchServlet',
+                        type: 'GET',
+                        data: {term: searchTerm},
+                        success: function (data) {
+                            let resultsHtml = '';
+                            data.forEach(function (book) {
+                                resultsHtml += '<div class="search-item" data-id="' + book.bookID + '" style="padding: 10px; border-bottom: 1px solid #eee; cursor: pointer;">' + book.title + '</div>';
+                            });
+                            $('#searchResults').html(resultsHtml).show();
+                        }
+                    });
+                } else {
+                    $('#searchResults').hide();
+                }
+            });
+
+            $(document).on('click', '.search-item', function () {
+                let bookId = $(this).data('id');
+                window.location.href = '<%= request.getContextPath()%>/ViewDetailController?id=' + bookId;
+                $('#searchResults').hide(); // Ẩn kết quả sau khi chọn
+            });
+
+            // Ẩn kết quả khi click ra ngoài
+            $(document).on('click', function (event) {
+                if (!$(event.target).closest('#searchInput, #searchResults').length) {
+                    $('#searchResults').hide();
+                }
+            });
+        });
+    </script>
 </header>

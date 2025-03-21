@@ -151,4 +151,24 @@ public class BookDAO {
 
         return books;
     }
+
+    public List<Book> searchBooksByTitle(String searchTerm) {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT BookID, Title FROM Books WHERE Title LIKE ?";
+        try (Connection conn = DBUtils.makeConnection();
+                PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, "%" + searchTerm + "%");
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next()) {
+                    Book book = new Book();
+                    book.setBookID(rs.getInt("BookID"));
+                    book.setTitle(rs.getString("Title"));
+                    books.add(book);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
 }

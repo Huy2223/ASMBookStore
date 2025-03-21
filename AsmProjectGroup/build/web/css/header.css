@@ -9,40 +9,59 @@ and open the template in the editor.
 */
 
 
- header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #1A2A2E;
-        padding: 15px 20px;
-    }
-    .logo {
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-    }
-    nav ul {
-        list-style: none;
-        display: flex;
-        padding: 0;
-    }
-    nav ul li {
-        margin: 0 15px;
-    }
-    nav ul li a {
-        text-decoration: none;
-        color: white;
-    }
-    .search-cart input {
-        padding: 5px;
-        border: none;
-        border-radius: 4px;
-    }
-    .search-cart button {
-        background-color: #0C191B;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        border-radius: 4px;
-    }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1A2A2E;
+    padding: 15px 20px;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+}
+.search-cart input {
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+}
+.search-cart button {
+    background-color: #0C191B;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+#searchResults {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 250px;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.search-item:hover {
+    background-color: #f0f0f0;
+}

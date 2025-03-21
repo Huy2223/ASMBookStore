@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     background-color: #f0f0f0;
+    max-width: calc(100% / 5 - 10px);
 }
 
 .bookListImg {
@@ -32,9 +33,9 @@
     padding: 16px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Cho phép card-body mở rộng */
+    flex-grow: 1;
     align-items: center;
-    justify-content: space-between; /* Phân phối không gian giữa các phần tử */
+    justify-content: space-between;
 }
 
 .card-title {
@@ -144,9 +145,10 @@ section.container h5.text-uppercase::after {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
 }
+
 .featured-author-book-image {
     max-height: 300px;
-    object-fit: cover; /* Đảm bảo ảnh lấp đầy không gian */
+    object-fit: cover;
 }
 
 .featured-author-book-details {
@@ -154,19 +156,19 @@ section.container h5.text-uppercase::after {
 }
 
 .featured-author-book-title {
-    font-size: 16px; /* Giảm kích thước tiêu đề */
+    font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 .featured-author-book-price {
-    font-size: 14px; /* Giảm kích thước giá */
+    font-size: 14px;
     color: #dc3545;
     margin-bottom: 10px;
 }
 
 .featured-author-view-details {
     text-decoration: none;
-    font-size: 12px; /* Giảm kích thước link */
+    font-size: 12px;
     color: #007bff;
 }

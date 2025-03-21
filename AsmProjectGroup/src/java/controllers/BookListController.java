@@ -49,9 +49,9 @@ public class BookListController extends HttpServlet {
                 if (book.getBookID() == 1 || book.getBookID() == 2 || book.getBookID() == 5) {
                     featuredAuthorBooks.add(book);
                 }
-                if (book.getBookID() >= 16 && book.getBookID() <= 20) {
+                if (book.getBookID() >= 16 && book.getBookID() <= 25) {
                     newArrivalBooks.add(book);
-                } else if (book.getBookID() >= 6 && book.getBookID() <= 10) {
+                } else if (book.getBookID() >= 6 && book.getBookID() <= 15) {
                     bestSellerBooks.add(book);
                 } else if (book.getBookID() >= 11 && book.getBookID() <= 15) {
                     topRatedBooks.add(book);
