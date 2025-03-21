@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Book Store</title>
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/Tindex.css">
+        
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css">
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
         </section>
 
         <section class="container">
-            <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 class="text-uppercase font-weight-bold">Best Seller</h5>
             </div>
             <div class="slider-container" id="bestSellerSlider">
@@ -140,10 +140,10 @@
             </div>
             <img src="books/shortP.jpg" alt="Featured Author Image"
                  class="img-fluid mb-3 featured-author-image">
-            <div class="row justify-content-center" style="padding: 80px">
+            <div class="row justify-content-center" style="padding: 80px;">
                 <c:forEach var="book" items="${authorBook}">
                     <div class="col-md-4 mb-4">
-                        <div class="card" style="height: 725px;">
+                        <div class="card" style="height: 650px;">
                             <img class="card-img-top featured-author-book-image"
                                  style="max-height: 450px;"
                                  src="<c:url value='/books/${book.bookID}.jpg' />"
@@ -230,7 +230,7 @@
         <script src="<c:url value='/js/bestSellerSlider.js'/>"></script>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="<c:url value='/js/newArrivalSlider.js'/>"></script>
     <script src="<c:url value='/js/bestSellerSlider.js'/>"></script>
 

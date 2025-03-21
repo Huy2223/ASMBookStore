@@ -92,9 +92,12 @@
                         </tr>
                     </tfoot>
                 </table>
-                <form action="<c:url value='/OrderServlet' />" method="post">
-                    <button type="submit" class="btn btn-success">Checkout</button>
-                </form>
+                            <div class="d-flex justify-content-end" style="padding: 20px">
+                    <form action="<c:url value='/OrderController' />" method="post">
+                        <button type="submit" class="btn btn-success">Buy</button>
+                    </form>
+                </div>
+
             </c:if>
             <c:if test="${empty sessionScope.shopping_cart.carts}">
                 <p>Your cart is empty.</p>

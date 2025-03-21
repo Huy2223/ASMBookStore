@@ -1,17 +1,83 @@
-/* main.css */
+/* Đặt lại CSS cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Kiểu dáng cho tiêu đề */
+.container h5 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+section.container h5.text-uppercase {
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: #333;
+    margin-bottom: 20px;
+    position: relative;
+    text-align: center;
+}
+
+section.container h5.text-uppercase::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    width: 80px;
+    height: 3px;
+}
+
+/* Kiểu dáng cho biểu tượng giỏ hàng */
+.cart-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    z-index: 1000;
+}
+
+.cart-icon a {
+    color: #333;
+}
+
+/* Kiểu dáng cho card */
 .card {
-    border-radius: 8px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    height: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     background-color: #f0f0f0;
-    max-width: calc(100% / 5 - 10px);
 }
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Kiểu dáng cho hình ảnh sách */
 .bookListImg {
     width: 100%;
     height: 410px !important;
@@ -20,15 +86,11 @@
     border: 1px solid #ddd;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
 .card:hover .bookListImg {
     transform: scale(1.03);
 }
 
+/* Kiểu dáng cho nội dung card */
 .card-body {
     padding: 16px;
     display: flex;
@@ -36,10 +98,17 @@
     flex-grow: 1;
     align-items: center;
     justify-content: space-between;
+    text-align: center;
 }
 
+.slider-container {
+    width: 125%; /* Mở rộng slider */
+    margin-left: -10%; /* Đẩy ra ngoài biên trái */
+    margin-right: -10%; /* Đẩy ra ngoài biên phải */
+    overflow: hidden; /* Giữ slider không bị vỡ */
+}
 .card-title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     height: 48px;
     overflow: hidden;
@@ -56,6 +125,7 @@
     margin-bottom: 15px;
 }
 
+/* Kiểu dáng cho nút thêm vào giỏ hàng và xem chi tiết */
 .card-buttons {
     display: flex;
     flex-direction: column;
@@ -88,47 +158,7 @@
     transition: color 0.3s ease;
 }
 
-.container h5 {
-    font-weight: 700;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 8px;
-}
-
-.cart-icon {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 24px;
-    z-index: 1000;
-}
-
-.cart-icon a {
-    color: #333;
-}
-
-section.container h5.text-uppercase {
-    font-size: 2.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    color: #333;
-    margin-bottom: 20px;
-    position: relative;
-    text-align: center;
-}
-
-section.container h5.text-uppercase::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -10px;
-    width: 80px;
-    height: 3px;
-}
-
+/* Kiểu dáng cho phần giỏ hàng */
 .cart-section .book-card {
     width: 100%;
     margin-bottom: 20px;
@@ -146,6 +176,7 @@ section.container h5.text-uppercase::after {
     -webkit-overflow-scrolling: touch;
 }
 
+/* Kiểu dáng cho phần featured author */
 .featured-author-book-image {
     max-height: 300px;
     object-fit: cover;
@@ -171,4 +202,55 @@ section.container h5.text-uppercase::after {
     text-decoration: none;
     font-size: 12px;
     color: #007bff;
+}
+.best-seller-slider,
+.new-arrival-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    cursor: grab;
+    user-select: none;
+    padding: 10px;
+}
+
+.best-seller-slider::-webkit-scrollbar,
+.new-arrival-slider::-webkit-scrollbar {
+    display: none; /* Ẩn scrollbar trên Chrome/Safari */
+}
+
+.best-seller-slider .card,
+.new-arrival-slider .card {
+    
+    flex: 0 0 auto;
+    width: 260px; /* Tăng kích thước card */
+    margin-right: 15px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.best-seller-slider .card:hover,
+.new-arrival-slider .card:hover {
+    transform: scale(1.05);
+}
+
+.best-seller-slider .card img,
+.new-arrival-slider .card img {
+    width: 100%;
+    height: 220px; /* Điều chỉnh chiều cao ảnh */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.best-seller-slider .card-body,
+.new-arrival-slider .card-body {
+    text-align: center;
+}
+
+.best-seller-slider.active,
+.new-arrival-slider.active {
+    cursor: grabbing;
 }
