@@ -8,7 +8,7 @@
 <footer class="py-3 text-white" style="background-color: #D64D17;">
     <div class="container">
         <div class="row align-items-center justify-content-around"> <div class="col-md-6 text-center text-md-left">
-                <div class="d-inline-block"> <img src="<c:url value='/books/kitten.png' />" alt="Logo" class="img-fluid" style="max-height: 155px; width: auto; margin-left: 30px;">                  
+                <div class="d-inline-block"> <img src="<c:url value='/books/kitten.png' />" alt="Logo" class="img-fluid" style="max-height: 170px; width: auto; margin-left: -50px;">                  
                     <p class="mt-3">
                         <i class="bi bi-geo-alt mr-2"></i> 395/13 TL28 Street, Thanh Loc Ward, District 12, Ho Chi Minh City 
                     </p>
