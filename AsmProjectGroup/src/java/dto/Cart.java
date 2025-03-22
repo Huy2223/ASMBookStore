@@ -20,7 +20,7 @@ public class Cart {
     private int accountID;
     private boolean status;
     private float total;
-    public List<CartDetail> carts = new ArrayList<>();
+    public List<CartDetail> cartDetails = new ArrayList<>();
 
     public Cart() {
     }
@@ -64,29 +64,47 @@ public class Cart {
         this.total = total;
     }
     public List<CartDetail> getCarts() {
-        return carts;
+        return cartDetails;
     }
 
     // Thêm sản phẩm vào giỏ hàng
     public void addItem(Book book, int quantity) {
-
-        // Kiểm tra nếu sản phẩm đã tồn tại trong giỏ hàng
-        for (CartDetail item : carts) {
-            if (item.getBook().getBookID() == book.getBookID()) {
-                // Nếu đã tồn tại, tăng số lượng
-                item.setQuantity(item.getQuantity() + quantity);
+        for (CartDetail detail : cartDetails) {
+            if (detail.getBook().getBookID() == book.getBookID()) {
+                detail.setQuantity(detail.getQuantity() + quantity);
                 return;
             }
         }
+        cartDetails.add(new CartDetail(book, quantity));
+    }
 
-        // Nếu chưa tồn tại, thêm mục mới vào giỏ hàng
-        CartDetail newItem = new CartDetail(book, quantity);
-        carts.add(newItem);
+    public void removeItem(int bookID) {
+        cartDetails.removeIf(detail -> detail.getBook().getBookID() == bookID);
+    }
+
+    public List<CartDetail> getCartDetails() {
+        return cartDetails;
+    }
+
+    public int getTotalItems() {
+        int total = 0;
+        for (CartDetail detail : cartDetails) {
+            total += detail.getQuantity();
+        }
+        return total;
+    }
+
+    public float getTotalAmount() {
+        float total = 0;
+        for (CartDetail detail : cartDetails) {
+            total += detail.getBook().getPrice() * detail.getQuantity();
+        }
+        return total;
     }
 
     // Cập nhật số lượng sản phẩm trong giỏ hàng
     public void updateItem(int bookID, int quantity) {
-        for (CartDetail item : carts) {
+        for (CartDetail item : cartDetails) {
             if (item.getBook().getBookID() == bookID) {
                 item.setQuantity(quantity);
                 if (quantity <= 0) {
@@ -98,48 +116,24 @@ public class Cart {
     }
 
     // Xóa một sản phẩm khỏi giỏ hàng
-    public void removeItem(int bookID) {
-        Iterator<CartDetail> iterator = carts.iterator();
-        while (iterator.hasNext()) {
-            CartDetail item = iterator.next();
-            if (item.getBook().getBookID() == bookID) {
-                iterator.remove();
-                break;
-            }
-        }
-    }
+    
 
     // Xóa tất cả sản phẩm khỏi giỏ hàng
     public void clear() {
-        carts.clear();
+        cartDetails.clear();
     }
 
     // Tính tổng tiền cho tất cả sản phẩm trong giỏ hàng
-    public float getTotalAmount() {
-        float total = 0;
-        for (CartDetail item : carts) {
-            total += (item.getBook().getPrice() * item.getQuantity());
-        }
-        return total;
-    }
-
-    // Lấy tổng số lượng sản phẩm trong giỏ hàng
-    public int getTotalItems() {
-        int count = 0;
-        for (CartDetail item : carts) {
-            count += item.getQuantity();
-        }
-        return count;
-    }
+    
 
     // Kiểm tra giỏ hàng rỗng
     public boolean isEmpty() {
-        return carts.isEmpty();
+        return cartDetails.isEmpty();
     }
 
     // Kiểm tra sản phẩm có tồn tại trong giỏ hàng
     public boolean containsProduct(int bookID) {
-        for (CartDetail item : carts) {
+        for (CartDetail item : cartDetails) {
             if (item.getBook().getBookID() == bookID) {
                 return true;
             }
@@ -149,11 +143,14 @@ public class Cart {
 
     // Lấy một mục giỏ hàng từ ID sản phẩm
     public CartDetail getItemByProductId(int bookID) {
-        for (CartDetail item : carts) {
+        for (CartDetail item : cartDetails) {
             if (item.getBook().getBookID() == bookID) {
                 return item;
             }
         }
         return null;
     }
+
+ 
+    
 }

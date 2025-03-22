@@ -23,7 +23,7 @@
                         </c:if>
                         <a href="<%= request.getContextPath()%>/MainController?action=categoryList" class="d-block text-white">Category</a>
                         <a href="<%= request.getContextPath()%>/MainController?action=bestSellerList" class="d-block text-white">Best Seller</a>
-                        <a href="#" class="d-block text-white">New Arrival</a>
+                        <a href="<%= request.getContextPath()%>/MainController?action=newArrivalList" class="d-block text-white">New Arrival</a>
                     </div>
                 </div>
 

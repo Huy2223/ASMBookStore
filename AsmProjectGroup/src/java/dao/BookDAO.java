@@ -49,24 +49,24 @@ public class BookDAO {
         return books;
     }
 
-    public List<Book> getBooksByCategory(int startId, int endId) {
+    public List<Book> getBooksByCategory(String categoryName) {
         List<Book> books = new ArrayList<>();
-        String sql = "SELECT Books.BookID, Books.Title, Books.AuthorID, Authors.Name AS AuthorName, Books.PublishedYear, Books.Price, Books.Description "
-                + "FROM Books "
-                + "INNER JOIN Authors ON Books.AuthorID = Authors.AuthorID "
-                + "WHERE Books.BookID BETWEEN ? AND ?";
+        String sql = "SELECT b.*, a.Name AS AuthorName "
+                + "FROM Books b "
+                + "INNER JOIN Authors a ON b.AuthorID = a.AuthorID "
+                + "INNER JOIN BookCategories bc ON b.BookID = bc.BookID "
+                + "INNER JOIN Categories c ON bc.CategoryID = c.CategoryID "
+                + "WHERE c.CategoryName = ?";
 
         try (Connection connection = DBUtils.makeConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, startId);
-            preparedStatement.setInt(2, endId);
+            preparedStatement.setString(1, categoryName);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 Book book = new Book();
                 book.setBookID(resultSet.getInt("BookID"));
                 book.setTitle(resultSet.getString("Title"));
-                book.setAuthorID(resultSet.getInt("AuthorID"));
                 book.setAuthorName(resultSet.getString("AuthorName"));
                 book.setPublishedYear(resultSet.getInt("PublishedYear"));
                 book.setPrice(resultSet.getDouble("Price"));
@@ -117,7 +117,7 @@ public class BookDAO {
         return book;
     }
 
-    public List<Book> getAllBooksWithCategories() {
+    public List<Book> getAllBooksWithCategories(String priceSort) {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT b.BookID, b.Title, b.AuthorID, a.Name AS AuthorName, "
                 + "b.PublishedYear, b.Price, b.Description, "
@@ -127,6 +127,11 @@ public class BookDAO {
                 + "LEFT JOIN BookCategories bc ON b.BookID = bc.BookID "
                 + "LEFT JOIN Categories c ON bc.CategoryID = c.CategoryID "
                 + "GROUP BY b.BookID, b.Title, b.AuthorID, a.Name, b.PublishedYear, b.Price, b.Description";
+
+        // Thêm sắp xếp theo giá nếu cần
+        if (priceSort != null && !priceSort.equals("none")) {
+            sql += " ORDER BY b.Price " + (priceSort.equals("asc") ? "ASC" : "DESC");
+        }
 
         try (Connection connection = DBUtils.makeConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -142,6 +147,58 @@ public class BookDAO {
                 book.setPrice(resultSet.getDouble("Price"));
                 book.setDescription(resultSet.getString("Description"));
                 book.setCategories(resultSet.getString("Categories"));
+                books.add(book);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return books;
+    }
+
+    public List<Book> getBooksByCategory(List<String> categories, String priceSort) {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT b.*, a.Name AS AuthorName "
+                + "FROM Books b "
+                + "INNER JOIN Authors a ON b.AuthorID = a.AuthorID "
+                + "INNER JOIN BookCategories bc ON b.BookID = bc.BookID "
+                + "INNER JOIN Categories c ON bc.CategoryID = c.CategoryID "
+                + "WHERE c.CategoryName IN (";
+
+        // Thêm các category vào truy vấn
+        for (int i = 0; i < categories.size(); i++) {
+            sql += "?";
+            if (i < categories.size() - 1) {
+                sql += ",";
+            }
+        }
+
+        sql += ")";
+
+        // Thêm sắp xếp theo giá nếu cần
+        if (priceSort != null && !priceSort.equals("none")) {
+            sql += " ORDER BY b.Price " + (priceSort.equals("asc") ? "ASC" : "DESC");
+        }
+
+        try (Connection connection = DBUtils.makeConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            // Thiết lập tham số cho category
+            for (int i = 0; i < categories.size(); i++) {
+                preparedStatement.setString(i + 1, categories.get(i));
+            }
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Book book = new Book();
+                book.setBookID(resultSet.getInt("BookID"));
+                book.setTitle(resultSet.getString("Title"));
+                book.setAuthorName(resultSet.getString("AuthorName"));
+                book.setPublishedYear(resultSet.getInt("PublishedYear"));
+                book.setPrice(resultSet.getDouble("Price"));
+                book.setDescription(resultSet.getString("Description"));
                 books.add(book);
             }
 

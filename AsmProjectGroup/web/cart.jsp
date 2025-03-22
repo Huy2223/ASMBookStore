@@ -8,22 +8,17 @@
         <title>Your Shopping Cart</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>
-            /* Đảm bảo body và html chiếm toàn bộ chiều cao */
             html, body {
                 height: 100%;
                 margin: 0;
                 display: flex;
                 flex-direction: column;
             }
-
-            /* Đảm bảo container chính chiếm hết chiều cao còn lại */
             .container {
                 flex: 1;
             }
-
-            /* Đặt footer ở dưới cùng */
             .cart-footer {
-                background-color: #f4f4f4; /* Màu nền tùy chỉnh */
+                background-color: #f4f4f4;
                 text-align: center;
                 padding: 10px 0;
                 position: relative;
@@ -54,16 +49,12 @@
                             <tr>
                                 <td>
                                     <c:if test="${not empty item.book}">
-                                        <img src="<c:url value='/books/${item.book.bookID}.jpg' />" 
+                                        <img src="<c:url value='/books/${item.book.bookID}.jpg' />"
                                              alt="${item.book.title}" width="80" height="100"/>
                                     </c:if>
                                 </td>
-                                <td>
-                                    <c:if test="${not empty item.book}">
-                                        ${item.book.title}
-                                    </c:if>
-                                </td>
-                                <td>
+                                <td><c:if test="${not empty item.book}">${item.book.title}</c:if></td>
+                                    <td>
                                     <c:if test="${not empty item.book}">
                                         <fmt:formatNumber value="${item.book.price}" type="currency" currencySymbol="$"/>
                                     </c:if>
@@ -92,19 +83,52 @@
                         </tr>
                     </tfoot>
                 </table>
-                            <div class="d-flex justify-content-end" style="padding: 20px">
+                <div class="d-flex justify-content-end" style="padding: 20px">
                     <form action="<c:url value='/OrderController' />" method="post">
                         <button type="submit" class="btn btn-success">Buy</button>
                     </form>
                 </div>
-
             </c:if>
+
             <c:if test="${empty sessionScope.shopping_cart.carts}">
                 <p>Your cart is empty.</p>
             </c:if>
         </div>
+
+        <!-- Success Modal -->
+        <div class="modal fade" id="orderSuccessModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title" id="successModalLabel">Order Placed Successfully!</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Thank you for your purchase! Your order has been placed successfully.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <%@ include file="/WEB-INF/layout/footer.jsp"%>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- JS libraries -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Trigger modal if success -->
+        <c:if test="${requestScope.orderSuccess == true}">
+            <script>
+                $(document).ready(function () {
+                    $('#orderSuccessModal').modal('show');
+                });
+            </script>
+        </c:if>
 
     </body>
 </html>

@@ -44,6 +44,7 @@ public class LoginController extends HttpServlet {
                 if (account.getPassword().equals(password)) {
                     HttpSession session = request.getSession();
                     session.setAttribute("userInfo", account);
+                    session.setAttribute("accountId", account.getAccountID());
 
                     if ("ADMIN".equals(account.getRole())) {
                         url = "BookListController";

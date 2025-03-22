@@ -9,6 +9,7 @@ import dao.BookDAO;
 import dto.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,10 +37,22 @@ public class CategoryController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             BookDAO bookDAO = new BookDAO();
-            List<Book> books = bookDAO.getAllBooksWithCategories();
+            List<Book> books;
+            String[] selectedCategories = request.getParameterValues("selectedCategories");
+            String priceSort = request.getParameter("priceSort");
+
+            if (selectedCategories != null && selectedCategories.length > 0) {
+                // Lọc sách theo category được chọn
+                books = bookDAO.getBooksByCategory(Arrays.asList(selectedCategories), priceSort);
+                request.setAttribute("selectedCategories", Arrays.asList(selectedCategories));
+            } else {
+                // Hiển thị tất cả sách
+                books = bookDAO.getAllBooksWithCategories(priceSort);
+            }
+
             request.setAttribute("bookList", books);
+            request.setAttribute("priceSort", priceSort);
             request.getRequestDispatcher("category.jsp").forward(request, response);
         }
     }
