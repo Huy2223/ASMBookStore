@@ -39,7 +39,7 @@ public class NewArrivalController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             BookDAO bookDAO = new BookDAO();
-            List<Book> books = bookDAO.getAllBooksWithCategories();
+            List<Book> books = bookDAO.getAllBooksWithAuthors();
             List<Book> newArrivalBooks = new ArrayList<>();
             for (Book book : books) {
                 if (book.getBookID() >= 16 && book.getBookID() <= 25) {

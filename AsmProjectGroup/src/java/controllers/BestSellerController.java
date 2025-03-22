@@ -34,7 +34,7 @@ public class BestSellerController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             BookDAO bookDAO = new BookDAO();
-            List<Book> books = bookDAO.getAllBooksWithCategories();
+            List<Book> books = bookDAO.getAllBooksWithAuthors();
             List<Book> bestSellerBooks = new ArrayList<>();
             for (Book book : books) {
                 if (book.getBookID() >= 6 && book.getBookID() <= 10 || book.getBookID() >= 21 && book.getBookID() <= 27) {
