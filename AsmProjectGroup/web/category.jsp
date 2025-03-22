@@ -43,8 +43,8 @@
                         <div class="row">
                         <c:forEach var="book" items="${bookList}">
                             <div class="col-md-4 mb-4">
-                                <div class="card book-card h-100">
-                                    <img src="<c:url value='/books/${book.bookID}.jpg' />" class="card-img-top" alt="${book.title}">
+                                <div class="card book-card h-100" style="padding: 6px;" >
+                                    <img src="<c:url value='/books/${book.bookID}.jpg' />" class="card-img-top" alt="${book.title}" style="height: 400px;">
                                     <div class="card-body d-flex flex-column" style="align-items: center; text-align: center;">
                                         <h5 class="card-title">${book.title}</h5>
                                         <p class="card-text">Author: ${book.authorName}</p>

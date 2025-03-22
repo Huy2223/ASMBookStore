@@ -8,6 +8,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="<%= request.getContextPath()%>/css/header.css">
 <header class="navbar navbar-expand-lg" style="background-color: #D64D17;">
     <div class="container-fluid d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="<%= request.getContextPath()%>/MainController?action=popList">

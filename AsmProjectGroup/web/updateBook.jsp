@@ -43,7 +43,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="authorId">Author ID:</label>
-                    <input type="number" class="form-control" id="authorId" name="authorId" value="${bookToUpdate.authorID}" required>
+                    <input type="number" class="form-control" id="authorId" name="authorId" value="${bookToUpdate.authorID}" readonly="">
                 </div>
             </div>
         </div>

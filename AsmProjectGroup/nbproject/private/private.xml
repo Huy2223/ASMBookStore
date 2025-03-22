@@ -8,10 +8,10 @@
             <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/main.jsp</file>
         </group>
         <group name="PRJ301">
-            <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/src/java/controllers/OrderController.java</file>
-            <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/src/java/controllers/NewArrivalController.java</file>
-            <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/src/java/controllers/BestSellerController.java</file>
-            <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/src/java/dao/BookDAO.java</file>
+            <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/web/WEB-INF/layout/header.jsp</file>
+            <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/src/java/controllers/MainController.java</file>
+            <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/web/updateBook.jsp</file>
+            <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/web/bookManagement.jsp</file>
         </group>
     </open-files>
 </project-private>

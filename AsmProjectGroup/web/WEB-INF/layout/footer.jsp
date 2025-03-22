@@ -31,7 +31,7 @@
             <div class="col-md-3 text-center stayconnect">
                 <span class="font-weight-bold d-block mb-2">STAY CONNECT</span>
                 <div class="mt-3">
-                    <a href="https://www.facebook.com/duc1402" class="mx-2" target="_blank"><img src="<c:url value='/books/facebook.png' />" alt="Facebook" style="height: 30px;"></a>
+                    <a href="https://www.facebook.com/profile.php?id=61574766410039" class="mx-2" target="_blank"><img src="<c:url value='/books/facebook.png' />" alt="Facebook" style="height: 30px;"></a>
                     <a href="https://www.instagram.com/_whoishducc_" class="mx-2" target="_blank"><img src="<c:url value='/books/instagram-removebg.png' />" alt="Instagram" style="height: 23px;"></a>
                 </div>
                 <div class="mt-3 payment-icons">
