@@ -48,19 +48,15 @@
                                         <fmt:formatNumber value="${book.price}" type="currency" />
                                     </td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal">Update</a>
+                                       <a href="MainController?action=showUpdateForm&bookId=${book.bookID}" class="btn btn-primary btn-sm">Update</a>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div class="row bg-light mt-4 py-3">
-                <div class="col-12 text-center">
-                    <small>@copyright By Group 7</small>
-                </div>
-            </div>
+            </div>         
         </div>
+         <%@ include file="/WEB-INF/layout/footer.jsp"%>
     </body>
 </html>

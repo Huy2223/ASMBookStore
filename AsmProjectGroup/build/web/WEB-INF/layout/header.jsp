@@ -30,6 +30,11 @@
                 <li class="nav-item">
                     <a class="nav-link text-white text-center" href="<%= request.getContextPath()%>/MainController?action=newArrivalList">New Arrival</a>
                 </li>
+                <c:if test="${not empty userInfo && userInfo.role == 'ADMIN'}">
+                    <li class="nav-item">
+                        <a class="nav-link text-white text-center" href="<%= request.getContextPath()%>/MainController?action=bookManagement">Book Management</a>
+                    </li>
+                </c:if>
             </ul>
         </div>
         <div class="d-flex align-items-center">

@@ -48,6 +48,14 @@ public class MainController extends HttpServlet {
                     case "logout":
                         url = "LogoutController";
                         break;
+                    case "showUpdateForm":
+                        url = "UpdateController";
+                        break;
+                    case "updateBook":
+                        url = "UpdateController";
+                        break;
+                    case "bookManagement":
+                        url = "BookListController";
                 }
             }
 
