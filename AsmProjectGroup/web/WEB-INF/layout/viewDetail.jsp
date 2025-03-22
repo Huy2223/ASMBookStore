@@ -52,6 +52,7 @@
                                 <input type="hidden" name="author" value="${book.authorName}">
                                 <input type="hidden" name="price" value="${book.price}">
                                 <input type="hidden" name="quantity" value="1">
+                                <input type="hidden" name="returnUrl" value="${returnUrl}">
                                 <button type="submit" class="btn btn-warning shadow-sm">
                                     <i class="fas fa-cart-plus"></i> Add to Cart
                                 </button>

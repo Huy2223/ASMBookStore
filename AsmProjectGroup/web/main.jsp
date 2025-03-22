@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Book Store</title>
-        
+
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css">
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -60,6 +60,7 @@
                                         <input type="hidden" name="author" value="${book.authorName}">
                                         <input type="hidden" name="price" value="${book.price}">
                                         <input type="hidden" name="quantity" value="1">
+                                        <input type="hidden" name="returnUrl" value="MainListController">
                                         <button type="submit" class="btn btn-success btn-add-custom">
                                             <i class="fas fa-cart-plus"></i> Add
                                         </button>
@@ -109,6 +110,7 @@
                                         <input type="hidden" name="author" value="${book.authorName}">
                                         <input type="hidden" name="price" value="${book.price}">
                                         <input type="hidden" name="quantity" value="1">
+                                        <input type="hidden" name="returnUrl" value="MainListController">
                                         <button type="submit" class="btn btn-success btn-add-custom">
                                             <i class="fas fa-cart-plus"></i> Add
                                         </button>
@@ -164,6 +166,7 @@
                                         <input type="hidden" name="author" value="${book.authorName}">
                                         <input type="hidden" name="price" value="${book.price}">
                                         <input type="hidden" name="quantity" value="1">
+                                        <input type="hidden" name="returnUrl" value="MainListController">
                                         <button type="submit" class="btn btn-success btn-add-custom">
                                             <i class="fas fa-cart-plus"></i> Add
                                         </button>

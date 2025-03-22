@@ -35,23 +35,19 @@ public class CartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            response.setContentType("text/html;charset=UTF-8");
 
-            String action = request.getParameter("action");
-            if ("add".equals(action)) {
-                addToCart(request, response);
-            } else if ("remove".equals(action)) {
-                removeFromCart(request, response);
-            } else {
-                // Xử lý khi truy cập trực tiếp cart.jsp
-                Cart cart = CartDAO.getCartFromSession(request);
-                if (cart == null) {
-                    cart = new Cart();
-                    CartDAO.setCartInSession(request, cart);
-                }
-                response.sendRedirect("cart.jsp");
+        String action = request.getParameter("action");
+        if ("add".equals(action)) {
+            addToCart(request, response);
+        } else if ("remove".equals(action)) {
+            removeFromCart(request, response);
+        } else {
+            Cart cart = CartDAO.getCartFromSession(request);
+            if (cart == null) {
+                cart = new Cart();
+                CartDAO.setCartInSession(request, cart);
             }
+            response.sendRedirect("cart.jsp");
         }
     }
 
@@ -62,23 +58,18 @@ public class CartController extends HttpServlet {
         String author = request.getParameter("author");
         float price = Float.parseFloat(request.getParameter("price"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String returnUrl = request.getParameter("returnUrl");
 
-        // Tạo đối tượng Book
         Book book = new Book();
         book.setBookID(bookID);
         book.setTitle(title);
         book.setAuthorName(author);
         book.setPrice(price);
 
-        // Lấy hoặc tạo giỏ hàng từ session
         Cart cart = CartDAO.getCartFromSession(request);
-
-        // Thêm sản phẩm vào giỏ hàng
         cart.addItem(book, quantity);
-
-        // Cập nhật giỏ hàng trong session
         CartDAO.setCartInSession(request, cart);
-        response.sendRedirect("MainListController");
+        response.sendRedirect(returnUrl);
     }
 
     private void removeFromCart(HttpServletRequest request, HttpServletResponse response)
