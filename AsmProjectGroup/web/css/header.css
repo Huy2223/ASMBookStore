@@ -10,11 +10,10 @@ and open the template in the editor.
 
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1A2A2E;
-    padding: 15px 20px;
+   font-family: "EB Garamond", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 .logo {
     font-size: 24px;

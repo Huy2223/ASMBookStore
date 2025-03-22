@@ -1,6 +1,9 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <footer class="py-3 text-white" style="background-color: #D64D17;">
     <div class="container">
@@ -32,7 +35,7 @@
                 <span class="font-weight-bold d-block mb-2">STAY CONNECT</span>
                 <div class="mt-3">
                     <a href="https://www.facebook.com/profile.php?id=61574766410039" class="mx-2" target="_blank"><img src="<c:url value='/books/facebook.png' />" alt="Facebook" style="height: 30px;"></a>
-                    <a href="https://www.instagram.com/_whoishducc_" class="mx-2" target="_blank"><img src="<c:url value='/books/instagram-removebg.png' />" alt="Instagram" style="height: 23px;"></a>
+                    <a href="https://www.instagram.com/_felinefolios_?igsh=cjBpN3NpdDc0eXVw" class="mx-2" target="_blank"><img src="<c:url value='/books/instagram-removebg.png' />" alt="Instagram" style="height: 23px;"></a>
                 </div>
                 <div class="mt-3 payment-icons">
                     <img src="<c:url value='/books/visa.png' />" alt="Visa" style="height: 25px; border-radius: 3px;">
@@ -43,7 +46,7 @@
             </div>
         </div>
                 <hr/>
-        <div class="text-center mt-4"> <p style="font-size: 1em; color: white;">&copy; Copyright by Group 7</p>
+        <div class="text-center mt-4"> <p style="font-size: 1em; color: white;">&copy; 2025 Feline Folios BookStore. All rights reserved</p>
     </div>
     </div>
 </footer>

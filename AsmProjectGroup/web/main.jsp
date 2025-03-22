@@ -145,9 +145,9 @@
             <div class="row justify-content-center" style="padding: 80px;">
                 <c:forEach var="book" items="${authorBook}">
                     <div class="col-md-4 mb-4">
-                        <div class="card" style="height: 650px;">
+                        <div class="card" style="height: 650px; border-radius: 8px;  border: 1px solid #ddd; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);">
                             <img class="card-img-top featured-author-book-image"
-                                 style="max-height: 450px;"
+                                 style="max-height: 450px; padding: 10px; "
                                  src="<c:url value='/books/${book.bookID}.jpg' />"
                                  alt="${book.title}" />
                             <div class="card-body text-center featured-author-book-details">
