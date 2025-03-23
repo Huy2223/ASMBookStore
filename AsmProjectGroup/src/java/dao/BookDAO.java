@@ -159,7 +159,7 @@ public class BookDAO {
 
     public List<Book> getBooksByCategory(List<String> categories, String priceSort) {
         List<Book> books = new ArrayList<>();
-        String sql = "SELECT b.*, a.Name AS AuthorName "
+        String sql = "SELECT DISTINCT b.*, a.Name AS AuthorName "
                 + "FROM Books b "
                 + "INNER JOIN Authors a ON b.AuthorID = a.AuthorID "
                 + "INNER JOIN BookCategories bc ON b.BookID = bc.BookID "
