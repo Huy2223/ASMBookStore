@@ -82,17 +82,26 @@
                             <td></td>
                         </tr>
                     </tfoot>
-                </table>
-                <div class="d-flex justify-content-end" style="padding: 20px">
-                    <form action="<c:url value='/OrderController' />" method="post">
-                        <button type="submit" class="btn btn-success">Buy</button>
-                    </form>
+                </table>   
+
+                <div class="d-flex justify-content-end" style="padding: 20px">                 
+                    <c:if test="${not empty sessionScope.shopping_cart.carts}">
+                        <form action="<c:url value='/OrderController' />" method="post">
+                            <button type="submit" class="btn btn-success">Buy</button>
+                        </form>                    
+                    </c:if>
                 </div>
             </c:if>
+
 
             <c:if test="${empty sessionScope.shopping_cart.carts}">
                 <p>Your cart is empty.</p>
             </c:if>
+
+            <c:if test="${not empty userInfo && userInfo.role == 'CUSTOMER'}">
+                <a href="<%= request.getContextPath()%>/MainController?action=orderUser" class="btn btn-primary ml-2">Order History</a>
+            </c:if>
+
         </div>
 
         <!-- Success Modal -->

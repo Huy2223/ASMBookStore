@@ -38,7 +38,11 @@
                     <li class="nav-item">
                         <a class="nav-link text-white text-center" href="<%= request.getContextPath()%>/MainController?action=bookManagement">Book Management</a>
                     </li>
-                </c:if>
+                    <li class="nav-item">
+                        <a class="nav-link text-white text-center" href="<%= request.getContextPath()%>/MainController?action=orderAdmin">Order Statistics</a>
+                    </li>
+                </c:if>              
+
             </ul>
         </div>
         <div class="d-flex align-items-center">

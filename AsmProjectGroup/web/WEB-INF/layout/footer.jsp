@@ -46,7 +46,7 @@
             </div>
         </div>
                 <hr/>
-        <div class="text-center mt-4"> <p style="font-size: 1em; color: white;">&copy; 2025 Feline Folios BookStore. All rights reserved</p>
+        <div class="text-center mt-4"> <p style="font-size: 1em; color: white;">&copy; 2025 Feline Folios Book Store. All rights reserved</p>
     </div>
     </div>
 </footer>
