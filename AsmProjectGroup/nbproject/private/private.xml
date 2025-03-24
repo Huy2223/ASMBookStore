@@ -2,11 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/WEB-INF/layout/footer.jsp</file>
-            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/WEB-INF/layout/header.jsp</file>
-            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/main.jsp</file>
-        </group>
         <group name="PRJ301">
             <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/src/java/controllers/ViewDetailController.java</file>
             <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/web/newArrival.jsp</file>
@@ -20,6 +15,25 @@
             <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/src/java/dto/OrderDetail.java</file>
             <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/web/main.jsp</file>
             <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/src/java/controllers/OrderHistoryController.java</file>
+        </group>
+        <group>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/src/java/controllers/SearchController.java</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/newArrival.jsp</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/src/java/controllers/CartController.java</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/src/java/controllers/OrderStatisticsController.java</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/category.jsp</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/auth/register.jsp</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/auth/login.jsp</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/js/newArrivalSlider.js</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/orderStatistics.jsp</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/src/java/controllers/RegisterController.java</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/js/bestSellerSlider.js</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/WEB-INF/layout/footer.jsp</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/src/java/controllers/LoginController.java</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/WEB-INF/layout/header.jsp</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/src/java/controllers/CategoryController.java</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/web/main.jsp</file>
+            <file>file:/D:/FPTU/SP25/PRJ301/GIT/asm/ASMBookStore/AsmProjectGroup/src/java/controllers/MainController.java</file>
         </group>
     </open-files>
 </project-private>

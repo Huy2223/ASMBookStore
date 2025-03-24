@@ -61,11 +61,16 @@
                                                         <input type="hidden" name="author" value="${book.authorName}">
                                                         <input type="hidden" name="price" value="${book.price}">
                                                         <input type="hidden" name="quantity" value="1">
-                                                        <input type="hidden" name="returnUrl" value="CategoryController">
+                                                        <input type="hidden" name="returnUrl" value="CategoryController" />
+                                                        <c:forEach var="category" items="${selectedCategories}">
+                                                            <input type="hidden" name="selectedCategories" value="${category}" />
+                                                        </c:forEach>
+                                                        <input type="hidden" name="priceSort" value="${priceSort}" />
                                                         <button type="submit" class="btn btn-success btn-add-custom">
                                                             <i class="fas fa-cart-plus"></i> Add
                                                         </button>
                                                     </form>
+
                                                 </c:if>
 
                                                 <c:if test="${empty sessionScope.userInfo}">

@@ -19,7 +19,7 @@
                             <div class="alert alert-danger">${errorMessage}</div>
                         </c:if>
 
-                        <form action="../MainController" method="post">
+                        <form action="<%=request.getContextPath()%>/RegisterController" method="post" id="registerForm">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter your name" required>
@@ -37,14 +37,12 @@
                                 <input type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password" required>
                             </div>
                             <div class="d-grid mb-3">
-                                <button type="submit" value="register" name="action" class="btn btn-primary">Register</button>
-                            </div>                  
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </body>
-
-
 </html>

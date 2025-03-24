@@ -9,6 +9,7 @@ import dao.BookDAO;
 import dto.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -39,20 +40,21 @@ public class CategoryController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             BookDAO bookDAO = new BookDAO();
             List<Book> books;
+
+            // Lấy filter từ request
             String[] selectedCategories = request.getParameterValues("selectedCategories");
             String priceSort = request.getParameter("priceSort");
 
             if (selectedCategories != null && selectedCategories.length > 0) {
-                // Lọc sách theo category được chọn
                 books = bookDAO.getBooksByCategory(Arrays.asList(selectedCategories), priceSort);
                 request.setAttribute("selectedCategories", Arrays.asList(selectedCategories));
             } else {
-                // Hiển thị tất cả sách
                 books = bookDAO.getAllBooksWithCategories(priceSort);
+                request.setAttribute("selectedCategories", new ArrayList<>()); // Đảm bảo không null
             }
 
             request.setAttribute("bookList", books);
-            request.setAttribute("priceSort", priceSort);
+            request.setAttribute("priceSort", priceSort == null ? "none" : priceSort);
             request.getRequestDispatcher("category.jsp").forward(request, response);
         }
     }

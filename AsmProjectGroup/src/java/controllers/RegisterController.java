@@ -44,13 +44,20 @@ public class RegisterController extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
+            // Kiểm tra định dạng email
+            if (!isValidEmail(email)) {
+                request.setAttribute("errorMessage", "Invalid email format.");
+                request.getRequestDispatcher(url).forward(request, response);
+                return; // Dừng xử lý nếu email không hợp lệ
+            }
+
             AccountDAO dao = new AccountDAO();
             boolean success = dao.createAccount(username, password, email);
 
             if (success) {
                 HttpSession session = request.getSession();
                 session.setAttribute("successMessage", "Registration successful! Please login.");
-                response.sendRedirect("auth/login.jsp"); 
+                response.sendRedirect("auth/login.jsp");
                 return;
             } else {
                 request.setAttribute("errorMessage", "Registration failed! Email may already exist.");
@@ -60,7 +67,12 @@ public class RegisterController extends HttpServlet {
             request.setAttribute("errorMessage", "An error occurred. Please try again.");
         }
         request.getRequestDispatcher(url).forward(request, response);
+    }
 
+    // Hàm kiểm tra định dạng email
+    private boolean isValidEmail(String email) {
+        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        return email.matches(regex);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.URLEncoder;
 
 /**
  *
@@ -69,7 +70,29 @@ public class CartController extends HttpServlet {
         Cart cart = CartDAO.getCartFromSession(request);
         cart.addItem(book, quantity);
         CartDAO.setCartInSession(request, cart);
-        response.sendRedirect(returnUrl);
+
+        // Lấy filter để redirect giữ nguyên trạng thái
+        String[] selectedCategories = request.getParameterValues("selectedCategories");
+        String priceSort = request.getParameter("priceSort");
+
+        StringBuilder url = new StringBuilder(returnUrl + "?");
+
+        if (selectedCategories != null) {
+            for (String category : selectedCategories) {
+                url.append("selectedCategories=").append(URLEncoder.encode(category, "UTF-8")).append("&");
+            }
+        }
+
+        if (priceSort != null && !priceSort.isEmpty()) {
+            url.append("priceSort=").append(URLEncoder.encode(priceSort, "UTF-8"));
+        }
+
+        // Xoá dấu & cuối nếu có
+        if (url.charAt(url.length() - 1) == '&') {
+            url.setLength(url.length() - 1);
+        }
+
+        response.sendRedirect(url.toString());
     }
 
     private void removeFromCart(HttpServletRequest request, HttpServletResponse response)

@@ -33,13 +33,20 @@ public class OrderStatisticsController extends HttpServlet {
 
             if (accountIdStr != null && !accountIdStr.isEmpty()) {
                 int accountId = Integer.parseInt(accountIdStr);
-                orderList = orderDAO.getOrdersByAccountIdForAdmin(accountId);
-                request.setAttribute("adminViewForAccount", true);
+                if (filterType != null && filterValue != null && !filterType.isEmpty() && !filterValue.isEmpty()) {
+                    orderList = orderDAO.getAllOrders(filterType, filterValue); // Lọc theo ngày/tháng/năm
+                    orderList.removeIf(order -> order.getAccountId() != accountId); // Lọc theo accountId
+                } else if (filterType != null && filterType.equals("") && filterValue != null && !filterValue.isEmpty()) {
+                    orderList = orderDAO.getAllOrders("day", filterValue);
+                    orderList.removeIf(order -> order.getAccountId() != accountId);
+                } else {
+                    orderList = orderDAO.getOrdersByAccountIdForAdmin(accountId); // Lọc theo accountId
+                }
+//                request.setAttribute("adminViewForAccount", true);
             } else if (filterType != null && filterValue != null && !filterType.isEmpty() && !filterValue.isEmpty()) {
                 orderList = orderDAO.getAllOrders(filterType, filterValue);
             } else if (filterType != null && filterType.equals("") && filterValue != null && !filterValue.isEmpty()) {
-                // Nếu filterType là "All" và filterValue có giá trị, lọc theo ngày tháng
-                orderList = orderDAO.getAllOrders("day", filterValue); // Lọc theo ngày mặc định
+                orderList = orderDAO.getAllOrders("day", filterValue);
             } else {
                 orderList = orderDAO.getAllOrders();
             }
