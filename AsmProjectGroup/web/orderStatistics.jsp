@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="//code.jqueryui.com/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="page">
 <%@ include file="/WEB-INF/layout/header.jsp" %>
@@ -35,7 +36,7 @@
                 <input type="text" name="filterValue" id="filterValue" placeholder="Select Date/Month/Year"
                        class="form-control mr-2">
 
-                <button type="submit" class="btn btn-primary">View Statistics for Account</button>
+                <button type="submit" class="btn btn-primary">View Statistics</button>
             </form>
         </div>
     </div>
@@ -78,6 +79,8 @@
                 <c:if test="${not empty filterType && not empty filterValue}">
                     <p class="text-center">Filtered by: ${filterType} = ${filterValue}</p>
                 </c:if>
+
+                 <canvas id="orderChart" width="400" height="200"></canvas>
             </div>
         </div>
     </c:if>
@@ -98,13 +101,45 @@
             let filterValue = $('#filterValue');
 
             if (filterType === 'day') {
-                filterValue.datepicker({ dateFormat: 'yy-mm-dd' }).datepicker('show');
+                filterValue.datepicker({dateFormat: 'yy-mm-dd'}).datepicker('show');
             } else if (filterType === 'month') {
-                filterValue.datepicker({ dateFormat: 'yy-mm' }).datepicker('show');
+                filterValue.datepicker({dateFormat: 'yy-mm'}).datepicker('show');
             } else if (filterType === 'year') {
-                filterValue.datepicker({ dateFormat: 'yy' }).datepicker('show');
+                filterValue.datepicker({dateFormat: 'yy'}).datepicker('show');
             } else {
                 filterValue.datepicker('destroy').val('');
+            }
+        });
+
+        // Vẽ biểu đồ
+        let chartData = JSON.parse('${chartData}');
+        let labels = Object.keys(chartData);
+        let values = Object.values(chartData);
+
+        let ctx = document.getElementById('orderChart').getContext('2d');
+        let myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Revenue per Period',
+                    data: values,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return '$' + value.toFixed(2);
+                            }
+                        }
+                    }
+                }
             }
         });
     });
