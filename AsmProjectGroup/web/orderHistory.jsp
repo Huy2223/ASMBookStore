@@ -12,7 +12,7 @@
         <style>
             .total-amount {
                 font-size: 1.5rem; /* Tăng kích thước chữ */
-                color: #007bff; /* Màu xanh dương (hoặc màu bạn thích) */
+                color: #007bff; /* Màu xanh dương  */
                 text-align: right; /* Căn phải hoặc center nếu muốn căn giữa */
                 margin-top: 20px; /* Tăng khoảng cách với các đơn hàng */
                 padding: 10px;
@@ -25,7 +25,7 @@
 
             .total-amount span {
                 font-weight: bold; /* In đậm số tiền */
-                color: #28a745; /* Màu xanh lá cây (hoặc màu bạn thích) */
+                color: #28a745; /* Màu xanh lá cây  */
             }
         </style>
     </head>

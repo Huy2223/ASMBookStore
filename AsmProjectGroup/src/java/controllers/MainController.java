@@ -63,6 +63,9 @@ public class MainController extends HttpServlet {
                     case "orderAdmin":
                         url = "OrderStatisticsController";
                         break;
+                    case "search" :
+                        url = "SearchController";
+                        break;
                 }
             }
 

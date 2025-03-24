@@ -53,21 +53,23 @@
                                             <div style="display: flex; justify-content: center; gap: 5px;">
                                                 <a href="<c:url value='/ViewDetailController?id=${book.bookID}' />" class="btn btn-primary">View Details</a>
 
-                                                <form action="<c:url value='/CartServlet' />" method="post">
-                                                    <input type="hidden" name="action" value="add">
-                                                    <input type="hidden" name="bookID" value="${book.bookID}">
-                                                    <input type="hidden" name="title" value="${book.title}">
-                                                    <input type="hidden" name="author" value="${book.authorName}">
-                                                    <input type="hidden" name="price" value="${book.price}">
-                                                    <input type="hidden" name="quantity" value="1">
-                                                    <input type="hidden" name="returnUrl" value="CategoryController">
-                                                    <button type="submit" class="btn btn-success btn-add-custom">
-                                                        <i class="fas fa-cart-plus"></i> Add
-                                                    </button>
-                                                </form>
+                                                <c:if test="${not empty sessionScope.userInfo}">
+                                                    <form action="<c:url value='/CartServlet' />" method="post">
+                                                        <input type="hidden" name="action" value="add">
+                                                        <input type="hidden" name="bookID" value="${book.bookID}">
+                                                        <input type="hidden" name="title" value="${book.title}">
+                                                        <input type="hidden" name="author" value="${book.authorName}">
+                                                        <input type="hidden" name="price" value="${book.price}">
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <input type="hidden" name="returnUrl" value="CategoryController">
+                                                        <button type="submit" class="btn btn-success btn-add-custom">
+                                                            <i class="fas fa-cart-plus"></i> Add
+                                                        </button>
+                                                    </form>
+                                                </c:if>
 
                                                 <c:if test="${empty sessionScope.userInfo}">
-                                                    <button type="button" class="btn btn-warning btn-add-custom" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                                    <button type="button" class="btn btn-warning btn-add-custom" data-toggle="modal" data-target="#loginModal">
                                                         <i class="fas fa-shopping-cart"></i> Add
                                                     </button>
                                                 </c:if>

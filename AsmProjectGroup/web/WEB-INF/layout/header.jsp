@@ -49,8 +49,18 @@
             <c:if test="${not empty userInfo}">
                 <span class="text-white me-3" style="font-size: 1.3rem;">Hello, ${userInfo.userName}</span>
             </c:if>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" id="searchInput" placeholder="Search books..." aria-label="Search" style="width: 250px; font-size: 1.1rem;">
+            <form  class="d-flex">
+                <form action="<%= request.getContextPath()%>/MainController" method="get" class="d-flex position-relative me-3">
+                    <input class="form-control me-2" type="search" name="search" id="searchInput"
+                           placeholder="Search books..." aria-label="Search"
+                           style="width: 250px; font-size: 1.1rem;">
+                    <input type="hidden" name="action" value="search">
+                    <button class="btn btn-outline-light me-2" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+
+                    <div id="searchResults" style="position: absolute; top: 100%; left: 0; background-color: white; border: 1px solid #ccc; width: 250px; display: none; z-index: 1000;"></div>
+                </form>
                 <div id="searchResults" style="position: absolute; background-color: white; border: 1px solid #ccc; width: 250px; display: none; z-index: 1000;"></div>
                 <a href="<%= request.getContextPath()%>/cart.jsp" class="btn btn-outline-light">
                     <i class="bi bi-cart"></i>
