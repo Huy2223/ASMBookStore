@@ -181,7 +181,7 @@ public class OrderDAO {
                 sql += " WHERE MONTH(CreateDate) = ?";
                 // Kiểm tra độ dài chuỗi, lấy toàn bộ giá trị nếu nhập theo "mm"
                 if (filterValue.length() >= 2) {
-                    filterValue = filterValue.substring(0, 2);
+                    filterValue = filterValue.substring(3, 5);
                 }
             } else if (filterType.equals("year")) {
                 sql += " WHERE YEAR(CreateDate) = ?";
