@@ -17,10 +17,10 @@
     <body class="login-page d-flex justify-content-center align-items-center vh-100">
         <div class="container login-container">
             <div class="row justify-content-center">
-                      <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="card p-4 shadow-lg rounded-3">
                         <h3 class="login text-center mb-4">Login</h3>
-                        <form action="<%= request.getContextPath() %>/MainController" method="post">
+                        <form action="<%= request.getContextPath()%>/MainController" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"  required>
@@ -28,17 +28,21 @@
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password here"  required>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"  required>
+                            </div>
+
+                            <div class="mb-3">
+                                <a href="<%= request.getContextPath()%>/auth/forgotPassword.jsp" class="text-decoration-none">Forgot your password?</a>
                             </div>
 
                             <div class="d-grid mb-3">
                                 <button type="submit" value="login" name="action" class="btn btn-primary">Login</button>
                             </div>
-                                <p><i><div style="color: red;">${errorMessage}</div></i></p>
+                            <p><i><div style="color: red;">${errorMessage}</div></i></p>
 
                             <div class="text-center">
                                 <span>Don't have an account?</span>
-                                <a href="<%= request.getContextPath() %>/auth/register.jsp" class="btn btn-outline-secondary ms-2">Sign Up</a>
+                                <a href="<%= request.getContextPath()%>/auth/register.jsp" class="btn btn-outline-secondary ms-2">Sign Up</a>
                             </div>
                         </form>
                     </div>

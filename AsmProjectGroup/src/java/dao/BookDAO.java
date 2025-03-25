@@ -228,12 +228,11 @@ public class BookDAO {
         }
         return books;
     }
-    
-    
+
     public boolean updateBook(Book book) {
         String sql = "UPDATE Books SET Title = ?, AuthorID = ?, PublishedYear = ?, Price = ?, Description = ? WHERE BookID = ?";
         try (Connection connection = DBUtils.makeConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, book.getTitle());
             preparedStatement.setInt(2, book.getAuthorID());
@@ -250,7 +249,7 @@ public class BookDAO {
             return false;
         }
     }
-    
+
     public List<Book> searchBooksByName(String searchName) {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT b.BookID, b.Title, b.AuthorID, a.Name AS AuthorName, "
@@ -260,13 +259,14 @@ public class BookDAO {
                 + "INNER JOIN Authors a ON b.AuthorID = a.AuthorID "
                 + "LEFT JOIN BookCategories bc ON b.BookID = bc.BookID "
                 + "LEFT JOIN Categories c ON bc.CategoryID = c.CategoryID "
-                + "WHERE b.Title LIKE ? "
+                + "WHERE b.Title LIKE ? OR A.Name like ? "
                 + "GROUP BY b.BookID, b.Title, b.AuthorID, a.Name, b.PublishedYear, b.Price, b.Description";
 
         try (Connection connection = DBUtils.makeConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, "%" + searchName + "%");
+            preparedStatement.setString(2, "%" + searchName + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {

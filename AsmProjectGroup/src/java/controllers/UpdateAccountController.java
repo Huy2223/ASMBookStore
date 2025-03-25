@@ -1,4 +1,3 @@
-
 package controllers;
 
 import dao.AccountDAO;
@@ -20,7 +19,7 @@ public class UpdateAccountController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       try {
+        try {
             String action = request.getParameter("action");
             if (action != null) {
                 switch (action) {
@@ -30,6 +29,10 @@ public class UpdateAccountController extends HttpServlet {
                     case "updateAccount":
                         updateAccount(request, response);
                         break;
+                    case "resetPassword":
+                        updateAccount(request, response);
+                        
+                        return;
                 }
             }
         } catch (Exception e) {
@@ -39,7 +42,7 @@ public class UpdateAccountController extends HttpServlet {
             request.getRequestDispatcher("MainController?action=accountManagement").forward(request, response);
         }
     }
-    
+
     private void showUpdateFormAccount(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         int accountId = Integer.parseInt(request.getParameter("accountId"));
@@ -60,7 +63,7 @@ public class UpdateAccountController extends HttpServlet {
             int accountId = Integer.parseInt(request.getParameter("accountId"));
             String password = request.getParameter("password");
             String email = request.getParameter("email");
-            String userName = request.getParameter("userName");            
+            String userName = request.getParameter("userName");
             String role = request.getParameter("role");
 
             Account account = new Account();
@@ -69,7 +72,6 @@ public class UpdateAccountController extends HttpServlet {
             account.setPassword(password);
             account.setUserName(userName);
             account.setRole(role);
-            
 
             AccountDAO accountDAO = new AccountDAO();
             boolean updated = accountDAO.update(account);
@@ -84,14 +86,12 @@ public class UpdateAccountController extends HttpServlet {
         }
     }
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
