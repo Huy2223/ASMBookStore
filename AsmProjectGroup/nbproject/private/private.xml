@@ -10,14 +10,16 @@
             <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/src/java/dto/OrderDetail.java</file>
         </group>
         <group>
-            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/dao/AccountDAO.java</file>
-            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/dao/BookDAO.java</file>
-            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/controllers/AccountController.java</file>
-            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/dto/Account.java</file>
-            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/controllers/UpdateAccountController.java</file>
-            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/controllers/DeleteAccountController.java</file>
-            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/web/accountManagement.jsp</file>
-            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/controllers/MainController.java</file>
+            <file>file:/D:/DAIHOC/GitProject/ASMBookStore/AsmProjectGroup/web/category.jsp</file>
+            <file>file:/D:/DAIHOC/GitProject/ASMBookStore/AsmProjectGroup/src/java/dao/BookDAO.java</file>
+            <file>file:/D:/DAIHOC/GitProject/ASMBookStore/AsmProjectGroup/src/java/controllers/OrderController.java</file>
+            <file>file:/D:/DAIHOC/GitProject/ASMBookStore/AsmProjectGroup/src/java/dao/CartDAO.java</file>
+            <file>file:/D:/DAIHOC/GitProject/ASMBookStore/AsmProjectGroup/src/java/controllers/CartController.java</file>
+            <file>file:/D:/DAIHOC/GitProject/ASMBookStore/AsmProjectGroup/src/java/controllers/OrderStatisticsController.java</file>
+            <file>file:/D:/DAIHOC/GitProject/ASMBookStore/AsmProjectGroup/web/cart.jsp</file>
+            <file>file:/D:/DAIHOC/GitProject/ASMBookStore/AsmProjectGroup/src/java/dao/OrderDAO.java</file>
+            <file>file:/D:/DAIHOC/GitProject/ASMBookStore/AsmProjectGroup/src/java/controllers/MainController.java</file>
+            <file>file:/D:/DAIHOC/GitProject/ASMBookStore/AsmProjectGroup/src/java/controllers/CategoryController.java</file>
         </group>
     </open-files>
 </project-private>

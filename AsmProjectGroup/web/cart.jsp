@@ -6,6 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Your Shopping Cart</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="...your-integrity-hash..." crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>
             html, body {
@@ -25,6 +26,20 @@
                 bottom: 0;
                 width: 100%;
             }
+
+            .quantity-update-container {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .quantity-update-container input[type="number"] {
+        width: 100%; /* Chiều rộng cố định cho input */
+    }
+
+    .quantity-update-container .btn-primary {
+        width: 100%; /* Giữ nguyên chiều rộng của button */
+    }
         </style>
     </head>
     <body>
@@ -59,12 +74,25 @@
                                         <fmt:formatNumber value="${item.book.price}" type="currency" currencySymbol="$"/>
                                     </c:if>
                                 </td>
-                                <td>${item.quantity}</td>
+
+                                <td>
+                                    <div class="quantity-update-container">
+                                        <form action="<c:url value='/CartServlet' />" method="post">
+                                            <input type="number" name="quantity[${item.book.bookID}]" 
+                                                   value="${item.quantity}" min="1" class="form-control" style="width: 60px;">
+                                            <input type="hidden" name="action" value="update">
+                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
+
+
                                 <td>
                                     <c:if test="${not empty item.book}">
                                         <fmt:formatNumber value="${item.book.price * item.quantity}" type="currency" currencySymbol="$"/>
                                     </c:if>
                                 </td>
+
                                 <td>
                                     <form action="<c:url value='/CartServlet' />" method="post">
                                         <input type="hidden" name="action" value="remove">
@@ -72,6 +100,10 @@
                                         <button type="submit" class="btn btn-danger btn-sm">Remove</button>
                                     </form>
                                 </td>
+
+
+
+
                             </tr>
                         </c:forEach>
                     </tbody>

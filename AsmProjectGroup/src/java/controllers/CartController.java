@@ -8,6 +8,7 @@ package controllers;
 import dao.CartDAO;
 import dto.Book;
 import dto.Cart;
+import dto.CartDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -40,6 +41,8 @@ public class CartController extends HttpServlet {
         String action = request.getParameter("action");
         if ("add".equals(action)) {
             addToCart(request, response);
+        } else if ("update".equals(action)) {
+         updateCart(request, response);
         } else if ("remove".equals(action)) {
             removeFromCart(request, response);
         } else {
@@ -103,6 +106,29 @@ public class CartController extends HttpServlet {
         cart.removeItem(bookID);
         CartDAO.setCartInSession(request, cart);
 
+        response.sendRedirect("cart.jsp");
+    }
+
+    private void updateCart(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Cart cart = CartDAO.getCartFromSession(request);
+
+        for (CartDetail item : cart.getCartDetails()) {
+            try {
+                // Tạo tên tham số dựa trên bookID
+                String quantityParamName = "quantity[" + item.getBook().getBookID() + "]";
+                // Lấy giá trị số lượng từ request
+                int quantity = Integer.parseInt(request.getParameter(quantityParamName));
+
+                // Cập nhật số lượng trong giỏ hàng
+                cart.updateItem(item.getBook().getBookID(), quantity);
+            } catch (NumberFormatException e) {
+                // Xử lý ngoại lệ nếu quantity không phải là số
+                e.printStackTrace(); // In lỗi ra console để debug, bạn có thể xử lý khác
+            }
+        }
+
+        CartDAO.setCartInSession(request, cart);
         response.sendRedirect("cart.jsp");
     }
 
