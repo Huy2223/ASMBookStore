@@ -75,6 +75,9 @@ public class MainController extends HttpServlet {
                     case "updateAccount":
                         url = "UpdateAccountController";
                         break;
+                    case "deleteAccount":
+                        url = "DeleteAccountController";
+                        break;
                 }
             }
 

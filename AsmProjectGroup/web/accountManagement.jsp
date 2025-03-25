@@ -56,11 +56,8 @@
                                 <tr>
 
                                     <th>AccountID</th>
-
                                     <th>Username</th>
-
                                     <th>Email</th>
-
                                     <th>Role</th>
                                     <th>Actions</th>
                                 </tr>
@@ -83,10 +80,8 @@
 
                                         <td class="text-center">
                                             <a href="MainController?action=showUpdateFormAccount&accountId=${account.accountID}" class="btn btn-primary btn-sm">Update</a>
-                                            <a href="MainController?action=showUpdateForm&bookId=${account.accountID}" class="btn btn-primary btn-sm">Delete</a>
-
+                                            <a href="MainController?action=deleteAccount&accountId=${account.accountID}" class="btn btn-primary btn-sm">Delete</a>
                                         </td>
-
                                     </tr>
 
                                 </c:forEach>
