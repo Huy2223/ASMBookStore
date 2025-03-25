@@ -23,18 +23,18 @@
                         <form action="<%= request.getContextPath() %>/MainController" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"  required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password here"  required>
                             </div>
 
                             <div class="d-grid mb-3">
                                 <button type="submit" value="login" name="action" class="btn btn-primary">Login</button>
                             </div>
-                            ${errorMessage}
+                                <p><i><div style="color: red;">${errorMessage}</div></i></p>
 
                             <div class="text-center">
                                 <span>Don't have an account?</span>

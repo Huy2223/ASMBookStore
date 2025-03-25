@@ -27,6 +27,7 @@
                     <c:if test="${not empty userInfo && userInfo.role == 'ADMIN'}">
                     <li class="nav-item"><a class="nav-link text-white text-center" href="<%= request.getContextPath()%>/MainController?action=bookManagement">Book Management</a></li>
                     <li class="nav-item"><a class="nav-link text-white text-center" href="<%= request.getContextPath()%>/MainController?action=orderAdmin">Order Statistics</a></li>
+                    <li class="nav-item"><a class="nav-link text-white text-center" href="<%= request.getContextPath()%>/MainController?action=accountManagement">Account Management</a></li>
                     </c:if>
             </ul>
         </div>
@@ -53,6 +54,7 @@
             <c:if test="${empty userInfo}">
                 <a href="<%= request.getContextPath()%>/auth/login.jsp" class="btn btn-outline-light ms-2">Login</a>
             </c:if>
+                
         </div>
     </div>
 
