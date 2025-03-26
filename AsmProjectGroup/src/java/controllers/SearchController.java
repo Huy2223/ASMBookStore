@@ -49,7 +49,7 @@ public class SearchController extends HttpServlet {
             }
             else{
                 request.setAttribute("errorMessage", "No fashion exist");
-                url = "main.jsp";
+                url = "category.jsp";
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

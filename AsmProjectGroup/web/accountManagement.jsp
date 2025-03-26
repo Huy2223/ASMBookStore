@@ -59,6 +59,7 @@
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>Order</th>
                                     <th>Actions</th>
                                 </tr>
 
@@ -77,6 +78,7 @@
                                         <td>${account.email}</td>
 
                                         <td>${account.role}</td>
+                                        <td class="text-center">${orderCounts[account.accountID]}</td>
 
                                         <td class="text-center">
                                             <a href="MainController?action=showUpdateFormAccount&accountId=${account.accountID}" class="btn btn-primary btn-sm">Update</a>
@@ -99,6 +101,36 @@
         </div>
 
         <%@ include file="/WEB-INF/layout/footer.jsp"%>
+<div class="modal fade" id="deleteErrorModal" tabindex="-1" role="dialog" aria-labelledby="deleteErrorModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteErrorModalLabel">Deny Deletion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <c:if test="${not empty deleteError}">
+                            ${deleteError}
+                        </c:if>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <script>
+            <c:if test="${not empty deleteError}">
+                $(document).ready(function() {
+                    $('#deleteErrorModal').modal('show');
+                });
+            </c:if>
+        </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
 </html>

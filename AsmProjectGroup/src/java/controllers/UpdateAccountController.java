@@ -7,6 +7,8 @@ import dto.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "UpdateAccountController", urlPatterns = {"/UpdateAccountController"})
 public class UpdateAccountController extends HttpServlet {
+
+    String url;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -28,18 +32,19 @@ public class UpdateAccountController extends HttpServlet {
                         return; // return so that the request does not forward to bookManagement
                     case "updateAccount":
                         updateAccount(request, response);
+                        url = "MainController?action=accountManagement";
                         break;
                     case "resetPassword":
-                        updateAccount(request, response);
-                        
-                        return;
+                        resetPassword(request, response);
+                        url = "MainController?action=login";
+                        break;
                 }
             }
         } catch (Exception e) {
             log("Error in UpdateController: " + e.getMessage());
             request.setAttribute("error", "An error occurred.");
         } finally {
-            request.getRequestDispatcher("MainController?action=accountManagement").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
@@ -65,17 +70,14 @@ public class UpdateAccountController extends HttpServlet {
             String email = request.getParameter("email");
             String userName = request.getParameter("userName");
             String role = request.getParameter("role");
-
             Account account = new Account();
             account.setAccountID(accountId);
             account.setEmail(email);
             account.setPassword(password);
             account.setUserName(userName);
             account.setRole(role);
-
             AccountDAO accountDAO = new AccountDAO();
             boolean updated = accountDAO.update(account);
-
             if (updated) {
                 request.setAttribute("message", "Account updated successfully!");
             } else {
@@ -83,6 +85,30 @@ public class UpdateAccountController extends HttpServlet {
             }
         } catch (NumberFormatException e) {
             request.setAttribute("error", "Invalid data format.");
+        }
+    }
+
+    private void resetPassword(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        String email = request.getParameter("email");
+        String newPassword = request.getParameter("newPassword");
+        AccountDAO accountDAO = new AccountDAO();
+        Account account = null;
+        try {
+            // Fetch the account by email
+            account = accountDAO.getAccountByEmail(email);
+            String errorMessage = "Email is incorrect or does not exist";
+            if (account != null) {
+                account.setPassword(newPassword);
+                accountDAO.updatePassword(account);
+            } else {
+                request.setAttribute("errorMessage", errorMessage);
+                request.getRequestDispatcher("auth/forgotPassword.jsp").forward(request, response);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+            request.setAttribute("errorMessage", "Error during login. Please try again.");
+            request.getRequestDispatcher("auth/forgotPassword.jsp").forward(request, response); // Ensure error page is shown
         }
     }
 
@@ -98,11 +124,6 @@ public class UpdateAccountController extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

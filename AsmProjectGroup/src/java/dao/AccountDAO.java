@@ -134,5 +134,31 @@ public class AccountDAO {
         }
         return check;
     }
+    
+    public boolean updatePassword(Account account) throws SQLException {
+        String sql = "UPDATE Accounts SET Password = ? WHERE Email = ?";
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.makeConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(sql);
+                ptm.setString(1, account.getPassword());
+                ptm.setString(2, account.getEmail());
+                check = ptm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
 
 }

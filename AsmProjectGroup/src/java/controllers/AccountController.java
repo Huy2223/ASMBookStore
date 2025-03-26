@@ -6,12 +6,16 @@
 package controllers;
 
 import dao.AccountDAO;
+import dao.OrderDAO;
 import dto.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -19,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import utils.DBUtils;
 
 /**
  *
@@ -30,10 +35,20 @@ public class AccountController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
+        Connection conn = DBUtils.makeConnection(); 
         AccountDAO accountDAO = new AccountDAO();
+        
+        OrderDAO orderDAO = new OrderDAO(conn);
         List<Account> accountList = new ArrayList<>();
         accountList = accountDAO.select();
+        Map<Integer, Integer> orderCounts = new HashMap<>(); // Store accountId and order count
+        for (Account account : accountList) {
+            int orderCount = orderDAO.getOrdersByAccountId(account.getAccountID()).size();
+            orderCounts.put(account.getAccountID(), orderCount);
+        }
+        
         request.setAttribute("accountList", accountList);
+        request.setAttribute("orderCounts", orderCounts);
         request.getRequestDispatcher("accountManagement.jsp").forward(request, response);
         
     }

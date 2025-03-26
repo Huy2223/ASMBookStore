@@ -8,6 +8,25 @@
         <title>Register</title>
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .register-container {
+                background-color: rgba(255, 255, 255, 0.6); /* Reduced opacity for more transparency */
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                padding: 20px;
+                border-radius: 10px;
+                width: 105%; /* Set a fixed width (adjust as needed) */
+                margin: 0 auto; /* Center the container horizontally */
+            }
+
+            
+
+            .text-center.mt-3 a {
+                font-size:1.1rem;/* Target the link within the container */
+                text-decoration: none; /* Remove underline */
+            }
+        </style>
     </head>
     <body class="register-page d-flex justify-content-center align-items-center vh-100">
         <div class="container">
@@ -38,6 +57,10 @@
                             </div>
                             <div class="d-grid mb-3">
                                 <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                            <div class="text-center mt-3">
+                               
+                                <a href="<%= request.getContextPath()%>/auth/login.jsp" class="btn btn-link">Already have an account?</a>
                             </div>
                         </form>
                     </div>
