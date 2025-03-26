@@ -43,13 +43,13 @@ public class SearchController extends HttpServlet {
             List<Book> books = bookDAO.searchBooksByName(searchName);
             String url = "error.jsp";
             if(books.size() > 0){
-                HttpSession sess = request.getSession();
-                sess.setAttribute("bookList", books);
+//                HttpSession sess = request.getSession();
+                request.setAttribute("bookList", books);
                 url = "category.jsp";
             }
             else{
                 request.setAttribute("errorMessage", "No book found");
-                url = "main.jsp";
+                url = "category.jsp";
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

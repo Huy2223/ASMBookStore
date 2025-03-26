@@ -40,7 +40,7 @@
 
                     <div class="col-md-10">
                         <h2>All Books</h2>
-                        
+                        <p><div>${errorMessage}</div></p>
                         <div class="row">
                         <c:forEach var="book" items="${bookList}">
                             <div class="col-md-4 mb-4">
