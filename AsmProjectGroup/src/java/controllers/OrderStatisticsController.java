@@ -16,12 +16,10 @@ import com.google.gson.Gson;
 
 @WebServlet(name = "OrderStatisticsController", urlPatterns = {"/OrderStatisticsController"})
 public class OrderStatisticsController extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String accountIdStr = request.getParameter("accountId");
+          String accountIdStr = request.getParameter("accountId");
         String filterType = request.getParameter("filterType");
         String filterValue = request.getParameter("filterValue");
         Connection conn = null;
@@ -113,8 +111,16 @@ public class OrderStatisticsController extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+      
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     @Override

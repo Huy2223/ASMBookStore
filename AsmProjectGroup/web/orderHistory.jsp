@@ -11,20 +11,20 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <style>
             .total-amount {
-                font-size: 1.5rem; /* Tăng kích thước chữ */
+                font-size: 1.5rem; 
                 color: #007bff; /* Màu xanh dương  */
-                text-align: right; /* Căn phải hoặc center nếu muốn căn giữa */
-                margin-top: 20px; /* Tăng khoảng cách với các đơn hàng */
+                text-align: right; 
+                margin-top: 20px; 
                 padding: 10px;
                 border-top: 1px solid #ddd; /* Thêm đường kẻ trên để phân tách */
             }
 
             .total-amount b {
-                font-weight: bold; /* In đậm "Total Amount" */
+                font-weight: bold;
             }
 
             .total-amount span {
-                font-weight: bold; /* In đậm số tiền */
+                font-weight: bold; 
                 color: #28a745; /* Màu xanh lá cây  */
             }
         </style>

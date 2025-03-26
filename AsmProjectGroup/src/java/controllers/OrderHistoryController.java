@@ -44,14 +44,14 @@ public class OrderHistoryController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-         HttpSession session = request.getSession();
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
         Integer accountId = (Integer) session.getAttribute("accountId");
 
         if (accountId == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("/auth/login.jsp");
                 return;
         }
          Connection conn = null;
@@ -81,6 +81,12 @@ public class OrderHistoryController extends HttpServlet {
                 }
             }
         }
+        
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+         processRequest(request, response);
     }
      
 
@@ -94,7 +100,7 @@ public class OrderHistoryController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
- 
+        processRequest(request, response);
     }
 
     /** 

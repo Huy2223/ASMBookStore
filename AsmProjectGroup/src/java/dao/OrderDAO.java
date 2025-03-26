@@ -18,8 +18,6 @@ import java.util.List;
  *
  * @author ACER
  */
-
-
 public class OrderDAO {
 
     private Connection conn;
@@ -69,7 +67,8 @@ public class OrderDAO {
                 if (pstmt != null) {
                     pstmt.close();
                 }
-            } catch (SQLException e) { /* Ignored */ }
+            } catch (SQLException e) {
+                /* Ignored */ }
         }
     }
 
@@ -105,11 +104,12 @@ public class OrderDAO {
                 if (pstmt != null) {
                     pstmt.close();
                 }
-            } catch (SQLException e) { /* Ignored */ }
+            } catch (SQLException e) {
+                /* Ignored */ }
         }
     }
-    
-     public List<Order> getOrdersByAccountId(int accountId) throws SQLException {
+
+    public List<Order> getOrdersByAccountId(int accountId) throws SQLException {
         List<Order> orders = new ArrayList<>();
         String sql = "SELECT * FROM Orders WHERE AccountId = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -130,22 +130,23 @@ public class OrderDAO {
     }
 
     public List<OrderDetail> getOrderDetailsByOrderId(int orderId) throws SQLException {
-         List<OrderDetail> orderDetails = new ArrayList<>();
+        List<OrderDetail> orderDetails = new ArrayList<>();
         String sql = "SELECT * FROM OrderDetails WHERE OrderId = ?";
-         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-             pstmt.setInt(1, orderId);
-             ResultSet rs = pstmt.executeQuery();
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, orderId);
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                 OrderDetail orderDetail = new OrderDetail();
-                 orderDetail.setBookId(rs.getInt("BookId"));
-                 orderDetail.setUnitPrice(rs.getFloat("UnitPrice"));
-                 orderDetail.setQuantity(rs.getInt("Quantity"));
-                 orderDetails.add(orderDetail);
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setBookId(rs.getInt("BookId"));
+                orderDetail.setUnitPrice(rs.getFloat("UnitPrice"));
+                orderDetail.setQuantity(rs.getInt("Quantity"));
+                orderDetails.add(orderDetail);
             }
         }
         return orderDetails;
     }
-    public List<Order> getAllOrders() throws SQLException{
+
+    public List<Order> getAllOrders() throws SQLException {
         //admin
         List<Order> orders = new ArrayList<>();
         String sql = "SELECT * FROM Orders";
@@ -164,14 +165,13 @@ public class OrderDAO {
         }
         return orders;
     }
-    
-    
-    public List<Order> getAllOrders(String filterType, String filterValue) throws SQLException {
-    List<Order> orders = new ArrayList<>();
-    String sql = "SELECT * FROM Orders";
 
-    if (filterType != null && filterValue != null && !filterType.isEmpty() && !filterValue.isEmpty()) {
-         if (filterType.equals("day")) {
+    public List<Order> getAllOrders(String filterType, String filterValue) throws SQLException {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM Orders";
+
+        if (filterType != null && filterValue != null && !filterType.isEmpty() && !filterValue.isEmpty()) {
+            if (filterType.equals("day")) {
                 sql += " WHERE DAY(CreateDate) = ?";
                 // Kiểm tra độ dài chuỗi, lấy toàn bộ giá trị nếu nhập theo "dd"
                 if (filterValue.length() >= 2) {
@@ -185,49 +185,50 @@ public class OrderDAO {
                 }
             } else if (filterType.equals("year")) {
                 sql += " WHERE YEAR(CreateDate) = ?";
-                // Không cần substring nếu filterValue chỉ chứa năm
+                if (filterValue.length() >= 5) {
+                    filterValue = filterValue.substring(6, 10);
+                }  
             }
-    }
-
-    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        if (filterType != null && filterValue != null && !filterType.isEmpty() && !filterValue.isEmpty()) {
-              pstmt.setInt(1, Integer.parseInt(filterValue)); // Chuyển đổi sang số nguyên
         }
 
-        ResultSet rs = pstmt.executeQuery();
-        while (rs.next()) {
-            Order order = new Order();
-            order.setOrderId(rs.getInt("OrderId"));
-            order.setAccountId(rs.getInt("AccountId"));
-            order.setCreateDate(rs.getDate("CreateDate"));
-            order.setStatus(rs.getBoolean("Status"));
-            order.setTotal(rs.getFloat("Total"));
-            order.setOrderDetails(getOrderDetailsByOrderId(order.getOrderId()));
-            orders.add(order);
-        }
-    }
-    return orders;
-}
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            if (filterType != null && filterValue != null && !filterType.isEmpty() && !filterValue.isEmpty()) {
+                pstmt.setInt(1, Integer.parseInt(filterValue)); // Chuyển đổi sang số nguyên
+            }
 
-     public List<Order> getOrdersByAccountIdForAdmin(int accountId) throws SQLException {
-        //admin
-          List<Order> orders = new ArrayList<>();
-          String sql = "SELECT * FROM Orders where accountId = ?";
-          try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-              pstmt.setInt(1, accountId);
             ResultSet rs = pstmt.executeQuery();
-              while (rs.next()) {
-                  Order order = new Order();
-                  order.setOrderId(rs.getInt("OrderId"));
-                  order.setAccountId(rs.getInt("AccountId"));
-                  order.setCreateDate(rs.getDate("CreateDate"));
-                  order.setStatus(rs.getBoolean("Status"));
-                  order.setTotal(rs.getFloat("Total"));
-                  order.setOrderDetails(getOrderDetailsByOrderId(order.getOrderId()));
-                  orders.add(order);
-              }
-          }
-          return orders;
+            while (rs.next()) {
+                Order order = new Order();
+                order.setOrderId(rs.getInt("OrderId"));
+                order.setAccountId(rs.getInt("AccountId"));
+                order.setCreateDate(rs.getDate("CreateDate"));
+                order.setStatus(rs.getBoolean("Status"));
+                order.setTotal(rs.getFloat("Total"));
+                order.setOrderDetails(getOrderDetailsByOrderId(order.getOrderId()));
+                orders.add(order);
+            }
+        }
+        return orders;
+    }
+
+    public List<Order> getOrdersByAccountIdForAdmin(int accountId) throws SQLException {
+        //admin
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM Orders where accountId = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, accountId);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Order order = new Order();
+                order.setOrderId(rs.getInt("OrderId"));
+                order.setAccountId(rs.getInt("AccountId"));
+                order.setCreateDate(rs.getDate("CreateDate"));
+                order.setStatus(rs.getBoolean("Status"));
+                order.setTotal(rs.getFloat("Total"));
+                order.setOrderDetails(getOrderDetailsByOrderId(order.getOrderId()));
+                orders.add(order);
+            }
+        }
+        return orders;
     }
 }
-
