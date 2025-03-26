@@ -78,7 +78,7 @@ public class RegisterController extends HttpServlet {
 
     // Hàm kiểm tra định dạng email
     private boolean isValidEmail(String email) {
-        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        String regex = "^[\\w.-]+@gmail\\.com$";
         return email.matches(regex);
     }
 

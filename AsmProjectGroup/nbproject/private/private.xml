@@ -10,11 +10,13 @@
             <file>file:/E:/Github/ASM/ASMBookStore/AsmProjectGroup/src/java/dto/OrderDetail.java</file>
         </group>
         <group>
-            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/web/auth/register.jsp</file>
             <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/controllers/MainController.java</file>
             <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/web/auth/forgotPassword.jsp</file>
             <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/web/auth/login.jsp</file>
+            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/controllers/LoginController.java</file>
+            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/web/auth/register.jsp</file>
             <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/controllers/UpdateAccountController.java</file>
+            <file>file:/F:/GIT-HUB/ASMBookStore/AsmProjectGroup/src/java/controllers/RegisterController.java</file>
         </group>
     </open-files>
 </project-private>
