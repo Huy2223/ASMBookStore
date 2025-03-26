@@ -20,7 +20,7 @@
                 margin: 0 auto; /* Center the container horizontally */
             }
 
-            
+
 
             .text-center.mt-3 a {
                 font-size:1.1rem;/* Target the link within the container */
@@ -34,9 +34,7 @@
                 <div class="col-md-5">
                     <div class="register-container">
                         <h3 class="text-center mb-4">Create an Account</h3>
-                        <c:if test="${not empty errorMessage}">
-                            <div class="alert alert-danger">${errorMessage}</div>
-                        </c:if>
+
 
                         <form action="<%=request.getContextPath()%>/RegisterController" method="post" id="registerForm">
                             <div class="mb-3">
@@ -47,19 +45,25 @@
                                 <label for="email" class="form-label">Email Address</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
                             </div>
+                            <c:if test="${not empty errorMessage}">
+                                <div class="alert alert-danger">${errorMessage}</div>
+                            </c:if>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
                             </div>
                             <div class="mb-3">
                                 <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password" required>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required>
                             </div>
+                            <c:if test="${not empty errorMessagePassword}">
+                                <div class="alert alert-danger">${errorMessagePassword}</div>
+                            </c:if>
                             <div class="d-grid mb-3">
                                 <button type="submit" class="btn btn-primary">Register</button>
                             </div>
                             <div class="text-center mt-3">
-                               
+
                                 <a href="<%= request.getContextPath()%>/auth/login.jsp" class="btn btn-link">Already have an account?</a>
                             </div>
                         </form>

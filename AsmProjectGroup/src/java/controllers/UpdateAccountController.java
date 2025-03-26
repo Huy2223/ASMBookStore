@@ -36,7 +36,6 @@ public class UpdateAccountController extends HttpServlet {
                         break;
                     case "resetPassword":
                         resetPassword(request, response);
-                        url = "MainController?action=login";
                         break;
                 }
             }
@@ -44,7 +43,9 @@ public class UpdateAccountController extends HttpServlet {
             log("Error in UpdateController: " + e.getMessage());
             request.setAttribute("error", "An error occurred.");
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            if (url != null) {
+                request.getRequestDispatcher(url).forward(request, response);
+            }
         }
     }
 
@@ -92,6 +93,12 @@ public class UpdateAccountController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         String email = request.getParameter("email");
         String newPassword = request.getParameter("newPassword");
+        String confirmPassword = request.getParameter("confirmPassword");
+        if (!confirmPassword.equals(newPassword)) {
+            request.setAttribute("errorMessagePassword", "Password is incorrect. Please re-enter your password");
+            request.getRequestDispatcher("auth/forgotPassword.jsp").forward(request, response);
+            return; // Dừng xử lý nếu email không hợp lệ
+        }
         AccountDAO accountDAO = new AccountDAO();
         Account account = null;
         try {
@@ -101,12 +108,13 @@ public class UpdateAccountController extends HttpServlet {
             if (account != null) {
                 account.setPassword(newPassword);
                 accountDAO.updatePassword(account);
+                request.getRequestDispatcher("auth/login.jsp").forward(request, response);
             } else {
                 request.setAttribute("errorMessage", errorMessage);
                 request.getRequestDispatcher("auth/forgotPassword.jsp").forward(request, response);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(UpdateAccountController.class.getName()).log(Level.SEVERE, null, e);
             request.setAttribute("errorMessage", "Error during login. Please try again.");
             request.getRequestDispatcher("auth/forgotPassword.jsp").forward(request, response); // Ensure error page is shown
         }

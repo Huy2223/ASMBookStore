@@ -1,4 +1,4 @@
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -62,8 +62,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="confirmPassword" class="form-label">Confirm New Password</label>
-                                <input type="password" class="form-control" id="confirmPassword" placeholder="Re-enter your new password" required>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your new password" required>
                             </div>
+                            <c:if test="${not empty errorMessagePassword}">
+                                <div class="alert alert-danger">${errorMessagePassword}</div>
+                            </c:if>
                             <div class="d-grid mb-3">
                                 <button type="submit" name="action" value="resetPassword" class="btn btn-primary">Reset Password</button>
                             </div>

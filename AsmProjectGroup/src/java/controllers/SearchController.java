@@ -48,8 +48,8 @@ public class SearchController extends HttpServlet {
                 url = "category.jsp";
             }
             else{
-                request.setAttribute("errorMessage", "No fashion exist");
-                url = "category.jsp";
+                request.setAttribute("errorMessage", "No book found");
+                url = "main.jsp";
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

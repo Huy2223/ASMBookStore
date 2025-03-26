@@ -11,7 +11,7 @@
     </head>
     <body>
         <%@ include file="/WEB-INF/layout/header.jsp" %>
-
+        
         <div class="container mt-4">
             <div class="row">
                 <div class="col-md-2">
@@ -40,6 +40,7 @@
 
                     <div class="col-md-10">
                         <h2>All Books</h2>
+                        
                         <div class="row">
                         <c:forEach var="book" items="${bookList}">
                             <div class="col-md-4 mb-4">

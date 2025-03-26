@@ -43,10 +43,17 @@ public class RegisterController extends HttpServlet {
             String username = request.getParameter("username");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-
+            String confirmPassword = request.getParameter("confirmPassword");
+                       
             // Kiểm tra định dạng email
             if (!isValidEmail(email)) {
                 request.setAttribute("errorMessage", "Invalid email format.");
+                request.getRequestDispatcher(url).forward(request, response);
+                return; // Dừng xử lý nếu email không hợp lệ
+            }
+            
+            if(!confirmPassword.equals(password)){
+                request.setAttribute("errorMessagePassword", "Password is incorrect. Please re-enter your password");
                 request.getRequestDispatcher(url).forward(request, response);
                 return; // Dừng xử lý nếu email không hợp lệ
             }

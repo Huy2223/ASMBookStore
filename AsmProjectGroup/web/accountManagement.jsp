@@ -101,7 +101,7 @@
         </div>
 
         <%@ include file="/WEB-INF/layout/footer.jsp"%>
-<div class="modal fade" id="deleteErrorModal" tabindex="-1" role="dialog" aria-labelledby="deleteErrorModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteErrorModal" tabindex="-1" role="dialog" aria-labelledby="deleteErrorModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -124,9 +124,9 @@
 
         <script>
             <c:if test="${not empty deleteError}">
-                $(document).ready(function() {
-                    $('#deleteErrorModal').modal('show');
-                });
+            $(document).ready(function () {
+                $('#deleteErrorModal').modal('show');
+            });
             </c:if>
         </script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
