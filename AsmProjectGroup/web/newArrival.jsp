@@ -41,7 +41,14 @@
                                             <a href="<c:url value='/ViewDetailController?id=${book.bookID}' />" class="btn btn-primary button-margin-4px" style="margin-right: 0px">View Details</a>
 
                                             <c:if test="${not empty sessionScope.userInfo}">
-                                                <form action="<c:url value='/CartServlet' />" method="post" style="display: inline-block;">
+                                                <form action="<c:url value='/CartServlet' />" method="post">
+                                                    <input type="hidden" name="action" value="add">
+                                                    <input type="hidden" name="bookID" value="${book.bookID}">
+                                                    <input type="hidden" name="title" value="${book.title}">
+                                                    <input type="hidden" name="author" value="${book.authorName}">
+                                                    <input type="hidden" name="price" value="${book.price}">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <input type="hidden" name="returnUrl" value="NewArrivalController">
                                                     <button type="submit" class="btn btn-success btn-add-custom">
                                                         <i class="fas fa-cart-plus"></i> Add
                                                     </button>
