@@ -67,8 +67,8 @@ public class AccountDAO {
         try (Connection conn = DBUtils.makeConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            try (ResultSet rs = ps.executeQuery();) {
+                if (rs.next()) {
                 Account account = new Account();
                 account.setAccountID(rs.getInt("accountID"));
                 account.setUserName(rs.getString("userName"));
@@ -76,6 +76,7 @@ public class AccountDAO {
                 account.setEmail(rs.getString("email"));
                 account.setRole(rs.getString("role"));
                 return account;
+            }          
             }
         }
         return null;
